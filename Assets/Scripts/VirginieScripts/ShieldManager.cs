@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(HealthBar))]
 [RequireComponent(typeof(Collider2D))]
-public class ShipManager : MonoBehaviour
+public class ShieldManager : MonoBehaviour
 {
     HealthBar health;
     Collider2D collide;
@@ -17,9 +17,10 @@ public class ShipManager : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collision");
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            Enemy enemy = collision.gameObject.GetComponent<EnemyAgent>().type;
             health.TakeDamage(enemy.damage);
         }
     }
