@@ -1,25 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(HealthBar))]
 public class HealthUI : MonoBehaviour
 {
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
-
-    public void SetMaxHealth(float value)
+    public List<Sprite> sprites = new List<Sprite>();
+    HealthBar health;
+    SpriteRenderer spriteRenderer;
+    int healthParts;
+    private void Start()
     {
-        slider.maxValue = value;
-        slider.value = value;
-
-        fill.color = gradient.Evaluate(1f);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        health = GetComponent<HealthBar>();
+        if(sprites.Count != 0)
+        {
+            healthParts = health.maxHealth / sprites.Count;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        UpdateSprite();
     }
 
-    public void SetHealth(float value)
+    private void UpdateSprite()
     {
-        slider.value = value;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+        if(healthParts != 0)
+        {
+            int spriteNb = health.currentHealth / healthParts;
+            Debug.Log(spriteNb);
+            spriteRenderer.sprite = sprites[spriteNb];
+        }
     }
 }
