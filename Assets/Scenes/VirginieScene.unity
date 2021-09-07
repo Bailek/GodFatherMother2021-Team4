@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 545213307}
   - component: {fileID: 545213309}
   - component: {fileID: 545213308}
+  - component: {fileID: 545213310}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -487,6 +488,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &545213310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545213304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8491aaf6abd5e439507e7c0634a5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &597735014
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &597735015
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -602,7 +617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f7d792881a68047bc55f867c2355dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites: []
+  fullHealth: {fileID: 0}
+  midHealth: {fileID: 0}
+  lowHealth: {fileID: 0}
 --- !u!114 &597735019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,10 +993,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f7d792881a68047bc55f867c2355dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  fullHealth: {fileID: 2747690628134850419, guid: be3bbb825fa229049b90e9aa82341af7, type: 3}
+  midHealth: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  lowHealth: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &1742850944
 MonoBehaviour:
   m_ObjectHideFlags: 0

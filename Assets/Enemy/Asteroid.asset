@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f4e6f493493074e8a4d3c59d0ad349, type: 3}
   m_Name: Asteroid
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 1
   health: 1
   speed: 10
   sprite: {fileID: 0}

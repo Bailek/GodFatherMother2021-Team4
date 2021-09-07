@@ -6,18 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(HealthBar))]
 public class HealthUI : MonoBehaviour
 {
-    public List<Sprite> sprites = new List<Sprite>();
+    public Sprite fullHealth;
+    public Sprite midHealth;
+    public Sprite lowHealth;
+
     HealthBar health;
     SpriteRenderer spriteRenderer;
-    int healthParts;
+    int healthPart;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<HealthBar>();
-        if(sprites.Count != 0)
-        {
-            healthParts = health.maxHealth / sprites.Count;
-        }
+        healthPart = health.maxHealth / 3;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,11 +26,16 @@ public class HealthUI : MonoBehaviour
 
     private void UpdateSprite()
     {
-        if(healthParts != 0)
+        if(health.currentHealth <= healthPart)
         {
-            int spriteNb = health.currentHealth / healthParts;
-            Debug.Log(spriteNb);
-            spriteRenderer.sprite = sprites[spriteNb];
+            spriteRenderer.sprite = lowHealth;
+        }else if(health.currentHealth <= healthPart * 2)
+        {
+            spriteRenderer.sprite = midHealth;
+        }
+        else
+        {
+            spriteRenderer.sprite = fullHealth;
         }
     }
 }
