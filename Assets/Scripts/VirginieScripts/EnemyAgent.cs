@@ -36,10 +36,9 @@ public class EnemyAgent : MonoBehaviour
             Vector2 vEnemyShip = ship.transform.position - transform.position;
             Vector2 dirEnemy = vEnemyShip.normalized;
             Vector2 speed = new Vector2(type.speed, type.speed);
-            Debug.Log(dirEnemy);
-            Vector2 newPos = new Vector2(transform.position.x, transform.position.y) * dirEnemy * speed * Time.fixedDeltaTime;
-            Debug.Log(newPos);
-            transform.position += (Vector3)newPos;
+            Vector2.ClampMagnitude(speed, type.maxSpeed);
+            Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
+            transform.position += (Vector3)velocity;
 
             float angle = 0f;
             Vector3 forward = transform.position + Vector3.up;
