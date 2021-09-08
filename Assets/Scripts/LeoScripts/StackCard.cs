@@ -8,9 +8,6 @@ public class StackCard : MonoBehaviour
 {
     public enum Slot { TOURET, HEAL, ZAPPER, LAZER, MEGABOOSTER }
     public Slot typeOfStack = Slot.TOURET;
-
-    public Drag.Slot typeOfCard = Drag.Slot.TOURET;
-    public Drag drag;
     public int numberStack;
     public CardDisplay PrefabCard;
     public GameObject LastPrefab;
