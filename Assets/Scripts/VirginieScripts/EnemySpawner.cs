@@ -21,19 +21,24 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        foreach(SpawnPoint spawnPoint in spawnPoints)
+        CreateListSpawnPointsByType();
+    }
+    private void CreateListSpawnPointsByType()
+    {
+        foreach (SpawnPoint spawnPoint in spawnPoints)
         {
-            foreach(SpawnType spawnType in spawnPoint.spawnTypes)
+            foreach (SpawnType spawnType in spawnPoint.spawnTypes)
             {
                 switch (spawnType)
                 {
                     case SpawnType.ASTEROID: asteroidSpawnPoint.Add(spawnPoint); break;
-                    case SpawnType.STRONG: strongSpawnPoint.Add(spawnPoint);  break;
-                    case SpawnType.WEAK: weakSpawnPoint.Add(spawnPoint);  break;
+                    case SpawnType.STRONG: strongSpawnPoint.Add(spawnPoint); break;
+                    case SpawnType.WEAK: weakSpawnPoint.Add(spawnPoint); break;
                 }
             }
         }
     }
+
     public void Start()
     {
         StartWave();
@@ -58,35 +63,13 @@ public class EnemySpawner : MonoBehaviour
         {
             hasSpawn = false;
 
-            int rnd = Random.Range(0, 100);
-
             if (waveCount % 5 == 0)
             {
-                if (rnd <= 33)
-                {
-                    SpawnEnemyAtIndexOrBelow(2);
-                }
-                else if (rnd <= 66)
-                {
-                    SpawnEnemyAtIndexOrBelow(1);
-                    if(!hasSpawn) { SpawnEnemyAtIndexOrOver(1); }
-                }
-                else if (rnd <= 100)
-                {
-                    SpawnEnemyAtIndexOrOver(0);
-                }
+                SpawnThreeType();
             }
             else
             {
-                if (rnd <= 50)
-                {
-                    SpawnEnemyAtIndexOrBelow(1);
-                    if (!hasSpawn) { SpawnEnemyAtIndexOrOver(1); }
-                }
-                else if (rnd <= 100)
-                {
-                    SpawnEnemyAtIndexOrOver(0);
-                }
+                SpawnTwoType();
             }
 
             if (!hasSpawn)
@@ -98,6 +81,38 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    private void SpawnThreeType()
+    {
+        int rnd = Random.Range(0, 100);
+        if (rnd <= 33)
+        {
+            SpawnEnemyAtIndexOrBelow(2);
+        }
+        else if (rnd <= 66)
+        {
+            SpawnEnemyAtIndexOrBelow(1);
+            if (!hasSpawn) { SpawnEnemyAtIndexOrOver(1); }
+        }
+        else if (rnd <= 100)
+        {
+            SpawnEnemyAtIndexOrOver(0);
+        }
+    }
+
+    private void SpawnTwoType()
+    {
+        int rnd = Random.Range(0, 100);
+
+        if (rnd <= 50)
+        {
+            SpawnEnemyAtIndexOrBelow(1);
+            if (!hasSpawn) { SpawnEnemyAtIndexOrOver(1); }
+        }
+        else if (rnd <= 100)
+        {
+            SpawnEnemyAtIndexOrOver(0);
+        }
+    }
     private void SpawnEnemyAtIndexOrBelow(int index)
     {
         if (index < 0) { return; }
@@ -126,33 +141,49 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void CreateEnemy(int index)
+    private void CreateEnemy(int index)
     {
-        List<SpawnPoint> currentSpawnPoints = FindSpawnPoint(index);
+        EnemyAgent agent = enemyList[index].enemyPrefab.GetComponent<EnemyAgent>();
+        List<SpawnPoint> currentSpawnPoints = FindSpawnPoint(agent);
         int spawnPointIndex = Random.Range(0, currentSpawnPoints.Count);
-        GameObject enemy = Instantiate(enemyList[index].enemyPrefab, currentSpawnPoints[spawnPointIndex].transform.position, Quaternion.Euler(0, 0, 0));
+        SpawnPoint spawnPoint = currentSpawnPoints[spawnPointIndex];
+        GameObject enemy = Instantiate(enemyList[index].enemyPrefab, spawnPoint.transform.position, Quaternion.Euler(0, 0, 0));
+        EnemyAgent newAgent = enemy.GetComponent<EnemyAgent>();
+        newAgent.SetTarget(FindTarget(newAgent, spawnPoint));
         enemyList[index].currentCount++;
         hasSpawn = true;
     }
 
-    public List<SpawnPoint> FindSpawnPoint(int index)
+    private List<SpawnPoint> FindSpawnPoint(EnemyAgent agent)
     {
-        if (enemyList[index].enemyPrefab.GetComponent<EnemyAgent>().type.name == "Asteroid")
+        if (agent.type.name == "Asteroid")
         {
             return asteroidSpawnPoint;
         }
-        else if (enemyList[index].enemyPrefab.GetComponent<EnemyAgent>().type.name == "WeakEnemy")
+        else if (agent.type.name == "WeakEnemy")
         {
             return weakSpawnPoint;
         }
-        else if (enemyList[index].enemyPrefab.GetComponent<EnemyAgent>().type.name == "StrongEnemy")
+        else if (agent.type.name == "StrongEnemy")
         {
             return strongSpawnPoint;
         }
 
-        return asteroidSpawnPoint;
+        return null;
     }
-    public void CreateWave()
+
+    private Transform FindTarget(EnemyAgent agent, SpawnPoint spawnPoint)
+    {
+        if (agent.type.name == "Asteroid")
+        {
+            return ShipManager.Instance.transform;
+        }
+        else
+        {
+            return spawnPoint.stopPoint.transform;
+        }
+    }
+    private void CreateWave()
     {
         waveCount++;
         ResetEnemyCount();
@@ -175,7 +206,7 @@ public class EnemySpawner : MonoBehaviour
         isWaveFinished = false;
     }
 
-    public void ResetEnemyCount()
+    private void ResetEnemyCount()
     {
         foreach (EnemyList enemy in enemyList)
         {
