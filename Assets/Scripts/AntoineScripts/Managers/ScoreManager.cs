@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
-    private static Score instance;
+    private static ScoreManager instance;
     
     public float speedFactor = 1;
     public Text scoreText;
