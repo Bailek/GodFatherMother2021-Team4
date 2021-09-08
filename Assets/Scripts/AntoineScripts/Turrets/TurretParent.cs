@@ -26,7 +26,7 @@ public class TurretParent : MonoBehaviour
         {
             Vector3 vectorToTarget = getVectorToTarget(_currentTarget);
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.deltaTime * turretStats.rotateSpeed * 10);
         }
     }
