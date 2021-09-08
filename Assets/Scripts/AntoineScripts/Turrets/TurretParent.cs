@@ -27,26 +27,24 @@ public class TurretParent : MonoBehaviour
             Vector3 vectorToTarget = getVectorToTarget(_currentTarget);
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * turretStats.rotateSpeed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.deltaTime * turretStats.rotateSpeed * 10);
         }
     }
     public void updateTarget()
     {
-        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, turretStats.radius);
+        int layerMask = 1 << 11;
+        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, turretStats.radius, layerMask);
         if (collidersInRange.Length > 0)
         {
             float _lastDistance = 10000;
             GameObject _lastTarget = null;
             for (int i = 0; i < collidersInRange.Length; i++)
             {
-                if (collidersInRange[i].gameObject.CompareTag("Enemy"))
+                float distance = Vector3.Distance(transform.position, collidersInRange[i].transform.position);
+                if (distance < _lastDistance)
                 {
-                    float distance = Vector3.Distance(transform.position, collidersInRange[i].transform.position);
-                    if (distance < _lastDistance)
-                    {
-                        _lastTarget = collidersInRange[i].gameObject;
-                        _lastDistance = distance;
-                    }
+                    _lastTarget = collidersInRange[i].gameObject;
+                    _lastDistance = distance;
                 }
             }
             _currentTarget = _lastTarget;
