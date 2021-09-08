@@ -17,7 +17,7 @@ public class HealthUI : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<HealthBar>();
-        healthPart = health.maxHealth / 3;
+        healthPart = (int)(health.maxHealth / 3);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

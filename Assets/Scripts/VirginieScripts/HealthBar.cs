@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    public int currentHealth = 100;
-    public int maxHealth = 100;
+    public float currentHealth = 100.0f;
+    public float maxHealth = 100.0f;
 
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void SetMaxHealth(int value)
+    public void SetMaxHealth(float value)
     {
         maxHealth = value;
         currentHealth = maxHealth;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
