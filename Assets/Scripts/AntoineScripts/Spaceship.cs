@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Spaceship : MonoBehaviour
 {
+    public static Spaceship instance;
+
     [Serializable]
     public class HealthState
     {
@@ -19,6 +21,9 @@ public class Spaceship : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null) { instance = this; }
+        else { Destroy(gameObject); }
+        
         currentHealth = maxHealth;
         GetComponent<SpriteRenderer>().sprite = states[0].sprite;
     }
@@ -76,8 +81,7 @@ public class Spaceship : MonoBehaviour
         else
         {
             //Death
-            Debug.LogWarning("Death");
-            // Destroy(gameObject);
+            GameManager.instance.EndGame();
         }
         Debug.Log(currentHealth);
     }

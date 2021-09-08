@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static ScoreManager instance;
+    public static ScoreManager instance;
     
-    public float speedFactor = 1;
-    public Text scoreText;
+    public float pointsPerSecond = 2;
+    public TMP_Text scoreText;
     
     private double score = 0;
 
@@ -27,7 +29,20 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        score += speedFactor * Time.deltaTime;
+        score += pointsPerSecond * Time.deltaTime;
         scoreText.text = ((long) score).ToString();
+    }
+
+    public int getScore()
+    {
+        return (int) score;
+    }
+    public void addScore(float value)
+    {
+        score += value;
+    }
+    public void removeScore(float value)
+    {
+        score -= value;
     }
 }
