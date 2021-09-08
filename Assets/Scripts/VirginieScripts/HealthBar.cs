@@ -11,6 +11,12 @@ public class HealthBar : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
+
+    public void SetMaxHealth(int value)
+    {
+        maxHealth = value;
+        currentHealth = maxHealth;
+    }
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -18,16 +24,6 @@ public class HealthBar : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(this.gameObject);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemy = collision.gameObject.GetComponent<EnemyAgent>().type;
-            TakeDamage(enemy.damage);
-            Destroy(collision.gameObject);
         }
     }
 }

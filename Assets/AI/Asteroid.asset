@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f4e6f493493074e8a4d3c59d0ad349, type: 3}
+  m_Script: {fileID: 11500000, guid: ac15ccb6b1c305d4ea865b9f43d9da59, type: 3}
   m_Name: Asteroid
   m_EditorClassIdentifier: 
-  damage: 1
-  health: 1
-  speed: 10
-  sprite: {fileID: 0}
+  health: 2
+  damage: 10
+  speed: 1
+  sprite: {fileID: 21300000, guid: 1af5fd4a20c916e40b603aa1f00c2d55, type: 3}
+  spriteOnDestroy: {fileID: 0}
+  multipliers: []
+  speedMultiplier: 1
