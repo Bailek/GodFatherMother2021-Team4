@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 5424687238259772051}
   - component: {fileID: 5424687238259772061}
   - component: {fileID: 5424687238259772060}
-  - component: {fileID: 5424687238259772063}
   - component: {fileID: 5424687238259772062}
   - component: {fileID: 5424687238259772049}
   - component: {fileID: 5424687238259772048}
@@ -216,23 +215,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5424687238259772063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5424687238259772050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9d98181f230f8c49a75c771ded93566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeOfCard: 0
-  parentToReturnTo: {fileID: 0}
-  LastCard: {fileID: 0}
-  PanelCard: {fileID: 0}
-  cardDisplay: {fileID: 0}
 --- !u!114 &5424687238259772062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,12 +227,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e53dbe4354f98f40bdb62cbd1deb513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfCard: 0
+  positionToReturnTo: {x: 0, y: 0, z: 0}
+  PanelCard: {fileID: 0}
+  cardDisplay: {fileID: 0}
   card: {fileID: 11400000, guid: c47b93e77fec9b942830bbf7da21f090, type: 2}
   artworkImage: {fileID: 0}
   articonImage: {fileID: 0}
   statText: {fileID: 0}
   numberText: {fileID: 0}
-  numberStack: 0
 --- !u!114 &5424687238259772049
 MonoBehaviour:
   m_ObjectHideFlags: 0

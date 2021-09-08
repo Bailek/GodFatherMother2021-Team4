@@ -8,15 +8,14 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 {
     public enum Slot { TOURET,HEAL,BOOST,HAND}
     public Slot typeOfCard = Slot.TOURET;
-    public Transform parentToReturnTo = null;
+    public Vector3 positionToReturnTo;
     public GameObject PanelCard;
     public CardDisplay cardDisplay;
 
     
     public void OnBeginDrag(PointerEventData eventData)
     {
-        parentToReturnTo = this.transform.parent;
-        this.transform.SetParent(this.transform.parent);
+        positionToReturnTo = this.transform.position;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
     public void OnDrag(PointerEventData eventData)
@@ -27,7 +26,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
-        this.transform.SetParent(parentToReturnTo);
+        this.transform.position = positionToReturnTo;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
     }
