@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Enemy : ScriptableObject
 {
-    public int damage = 100;
     public int health = 1;
+    public int damage = 100;
     public int speed = 100;
-
     public Sprite sprite;
+    public Sprite spriteOnDestroy;
 
     public virtual void OnDestroy()
     {
-        //FeedBack
+        //Feedback
     }
 }

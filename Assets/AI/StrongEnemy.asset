@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f4e6f493493074e8a4d3c59d0ad349, type: 3}
-  m_Name: Asteroid
+  m_Script: {fileID: 11500000, guid: caf2e4c3a86b56249a65b3cbe6e2f962, type: 3}
+  m_Name: StrongEnemy
   m_EditorClassIdentifier: 
-  damage: 1
   health: 1
-  speed: 10
-  sprite: {fileID: 0}
+  damage: 100
+  speed: 100
+  sprite: {fileID: 21300000, guid: 686d01cefaccd4e42823d38cd71d5b5a, type: 3}
+  spriteOnDestroy: {fileID: 0}
+  fireRate: 10
+  spriteBullet: {fileID: 0}
