@@ -12,9 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public int waveCount = 0;
     public bool isWaveFinished = false;
 
-    ShipManager shipManager;
-    GameObject ship;
-    bool hasSpawn = false;
+    private bool hasSpawn = false;
     private List<SpawnPoint> asteroidSpawnPoint = new List<SpawnPoint>();
     private List<SpawnPoint> weakSpawnPoint = new List<SpawnPoint>();
     private List<SpawnPoint> strongSpawnPoint = new List<SpawnPoint>();
@@ -38,8 +36,6 @@ public class EnemySpawner : MonoBehaviour
     }
     public void Start()
     {
-        shipManager = ShipManager.Instance;
-        ship = shipManager.gameObject;
         StartWave();
     }
     private void Update()
@@ -135,7 +131,6 @@ public class EnemySpawner : MonoBehaviour
         List<SpawnPoint> currentSpawnPoints = FindSpawnPoint(index);
         int spawnPointIndex = Random.Range(0, currentSpawnPoints.Count);
         GameObject enemy = Instantiate(enemyList[index].enemyPrefab, currentSpawnPoints[spawnPointIndex].transform.position, Quaternion.Euler(0, 0, 0));
-        Vector2 dirEnemy = enemy.transform.position - ship.transform.position;
         enemyList[index].currentCount++;
         hasSpawn = true;
     }

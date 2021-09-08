@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   damage: 10
-  speed: 10
+  speed: 2
   sprite: {fileID: 21300000, guid: 686d01cefaccd4e42823d38cd71d5b5a, type: 3}
   spriteOnDestroy: {fileID: 0}
+  multipliers: []
   fireRate: 10
   spriteBullet: {fileID: 0}
   fireRateMultipler: 1
