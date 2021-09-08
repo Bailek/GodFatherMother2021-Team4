@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 940551062411910155}
   - component: {fileID: 940551062411910152}
   - component: {fileID: 940551062411910153}
-  - component: {fileID: 940551062411910166}
+  - component: {fileID: -5809043373648040213}
+  - component: {fileID: -5294558898042076689}
   m_Layer: 6
   m_Name: StrongEnemy
   m_TagString: Enemy
@@ -136,7 +137,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &940551062411910166
+--- !u!114 &-5809043373648040213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,13 +146,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 940551062411910167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ca6b8c9d1a07048b010470b2044b92, type: 3}
+  m_Script: {fileID: 11500000, guid: 3650ac9bf1292fb4ca6c731648d9bc56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 11400000, guid: 38a9c1d14d3e8c44e8d164ac64df4b9d, type: 2}
+  enemyType: {fileID: 11400000, guid: 38a9c1d14d3e8c44e8d164ac64df4b9d, type: 2}
+  damage: 0
+  target: {fileID: 0}
+  speed: {x: 0, y: 0}
   bulletPrefab: {fileID: 8260939286287531607, guid: 962e0a1d2a9a748488ca8b44ace3a6f3, type: 3}
-  speedMultiplier: 1
+  fireRate: 0
   damageMultiplier: 1
   fireRateMultiplier: 1
-  damage: 0
-  fireRate: 0
+  hasArriveOnTarget: 0
+  timer: 0
+--- !u!114 &-5294558898042076689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940551062411910167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8491aaf6abd5e439507e7c0634a5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100

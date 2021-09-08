@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
     public float currentHealth = 100.0f;
     public float maxHealth = 100.0f;

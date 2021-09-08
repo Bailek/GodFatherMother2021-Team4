@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardEffect : MonoBehaviour
 {
-    public GameObject 
+    public GameObject test;
     public void Effect()
     {
 

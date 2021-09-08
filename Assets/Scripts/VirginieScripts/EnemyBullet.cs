@@ -5,18 +5,20 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float speed = 2.0f;
-    public float damage = 0.0f;
-    ShipManager shipManager;
-    GameObject ship;
-    Transform target;
+    [HideInInspector] public float damage = 0.0f;
+
+    private ShipManager shipManager;
+    private GameObject ship;
+    private Transform target;
 
     private void Start()
     {
         shipManager = ShipManager.Instance;
+        if (shipManager == null) return;
+
         ship = shipManager.gameObject;
         target = ship.transform;
     }
-
     private void Update()
     {
         if(shipManager != null)
@@ -27,7 +29,6 @@ public class EnemyBullet : MonoBehaviour
 
             transform.position += (Vector3)velocity;
         }
-
     }
     public void SetDamage(int value)
     {
