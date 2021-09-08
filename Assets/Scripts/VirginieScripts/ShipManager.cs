@@ -22,9 +22,17 @@ public class ShipManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.gameObject.GetComponent<EnemyAgent>().type;
-            health.TakeDamage(enemy.damage);
+            float damage = collision.gameObject.GetComponent<EnemyAgent>().damage;
+            health.TakeDamage(damage);
+            Destroy(collision.gameObject);
+        }else if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            float damage = collision.gameObject.GetComponent<EnemyBullet>().damage;
+            health.TakeDamage(damage);
             Destroy(collision.gameObject);
         }
+
+        
+
     }
 }

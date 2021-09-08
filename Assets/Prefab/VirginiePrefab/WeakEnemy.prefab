@@ -149,3 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 85d8340d2bb164f4b8ce8f7f17a8f977, type: 2}
+  bulletPrefab: {fileID: 8260939286287531607, guid: 962e0a1d2a9a748488ca8b44ace3a6f3, type: 3}
+  speedMultiplier: 1
+  damageMultiplier: 1
+  fireRateMultiplier: 1
+  damage: 0
+  fireRate: 0

@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: WeakEnemy
   m_EditorClassIdentifier: 
   health: 5
-  damage: 10
+  damage: 5
   speed: 3
+  maxSpeed: 20
   sprite: {fileID: 21300000, guid: 2a857981ec5b9684e911700d306ffbc1, type: 3}
   spriteOnDestroy: {fileID: 0}
-  multipliers: []
   fireRate: 10
   spriteBullet: {fileID: 0}
-  fireRateMultipler: 1
-  damageMultiplier: 1
