@@ -10,13 +10,11 @@ public class ShootingTurret : TurretParent
     private void Update()
     {
         rotateToTarget();
-        
-        if (Time.fixedTime > _lastTargetUpdate)
+        if (Time.time > _lastTargetUpdate)
         {
             updateTarget();
         }
-
-        if (Time.fixedTime > _lastShoot)
+        if (Time.time > _lastShoot)
         {
             shootTarget();
         }
@@ -24,19 +22,15 @@ public class ShootingTurret : TurretParent
 
     public override void shootTarget()
     {
-        RaycastHit hit;
-        Physics.Raycast( transform.position, transform.up, out hit, turretStats.radius);
-        Debug.Log(hit.collider);
-
+        int layerMask = 1 << 11;
+        RaycastHit2D hit = Physics2D.Raycast( transform.position, transform.up, turretStats.radius, layerMask);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.tag.Contains("Enemy"))
-            {
-                GameObject bullet = Instantiate(bulletPrefab, transform);
-                bullet.transform.SetParent(null);
-                bullet.GetComponent<Bullet>().target = hit.collider.gameObject.transform.position;
-            }
+            GameObject bullet = Instantiate(bulletPrefab, transform);
+            bullet.transform.SetParent(null);
+            bullet.GetComponent<Bullet>().target = getVectorToTarget(hit.collider.gameObject);
+            
+            _lastShoot = Time.time + turretStats.fireRate;
         }
-        _lastShoot = (long) (Time.fixedTime + turretStats.fireRate);
     }
 }
