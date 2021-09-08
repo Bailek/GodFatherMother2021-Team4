@@ -9,7 +9,8 @@ using UnityEngine;
 public class EnemyAgent : MonoBehaviour
 {
     public Enemy type;
-    
+    public GameObject bulletPrefab;
+    EnemyBullet enemyBullet;
     Rigidbody2D rb;
     HealthBar health;
     SpriteRenderer spriteRenderer;
@@ -23,6 +24,9 @@ public class EnemyAgent : MonoBehaviour
     public float damage = 0;
     public float fireRate = 0;
     bool hasArriveOnTarget = false;
+    bool isShooting = false;
+    float timer = 0f;
+
     Vector2 speed;
 
     private void Awake()
@@ -32,12 +36,13 @@ public class EnemyAgent : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health.SetMaxHealth(type.health);
         spriteRenderer.sprite = type.sprite;
-
+        enemyBullet = bulletPrefab.GetComponent<EnemyBullet>();
         speed = new Vector2(type.speed, type.speed);
         damage = type.damage;
         if(type.name == "WeakEnemy" || type.name == "StrongEnemy")
         {
             fireRate = type.GetFireRate();
+            enemyBullet.damage = damage;
         }
     }
     private void Start()
@@ -58,6 +63,24 @@ public class EnemyAgent : MonoBehaviour
             MoveToTarget();
             RotateTowardShip();
         }
+        else
+        {
+            if(type.name != "Asteroid")
+            {
+                Shoot();   
+            }
+        }
+    }
+
+    private void Shoot()
+    {
+        timer += Time.fixedDeltaTime;
+        float delayBetweenFire = 1.0f / (fireRate * fireRateMultiplier);
+        if(timer >= delayBetweenFire)
+        {
+            GameObject newBullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            timer -= delayBetweenFire;
+        }
     }
     private void MoveToTarget()
     {
@@ -67,6 +90,13 @@ public class EnemyAgent : MonoBehaviour
         Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
 
         transform.position += (Vector3)velocity;
+
+        float distance2Target = Vector2.Distance((Vector2)transform.position, target.position);
+        if(distance2Target <= 0.5f)
+        {
+            hasArriveOnTarget = true;
+            transform.position = target.position;
+        }
     }
 
     private void RotateTowardShip()
@@ -103,5 +133,6 @@ public class EnemyAgent : MonoBehaviour
         speed = new Vector2(type.speed * speedMultiplier, type.speed * speedMultiplier);
         damage = type.damage * damageMultiplier;
         fireRate = type.GetFireRate() * fireRateMultiplier;
+        enemyBullet.damage = damage;
     }
 }
