@@ -10,10 +10,10 @@ public class TurretParent : MonoBehaviour
     public GameObject _currentTarget;
     
     [HideInInspector]
-    public long _lastTargetUpdate;
+    public float _lastTargetUpdate;
     
     [HideInInspector]
-    public long _lastShoot;
+    public float _lastShoot;
     
     private void Start()
     {
@@ -24,7 +24,7 @@ public class TurretParent : MonoBehaviour
     {
         if (_currentTarget != null)
         {
-            Vector3 vectorToTarget = getVectorToTarget();
+            Vector3 vectorToTarget = getVectorToTarget(_currentTarget);
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * turretStats.rotateSpeed);
@@ -35,11 +35,11 @@ public class TurretParent : MonoBehaviour
         Collider[] collidersInRange = Physics.OverlapSphere(transform.position, turretStats.radius);
         if (collidersInRange.Length > 0)
         {
-            float _lastDistance = Vector3.Distance(transform.position, collidersInRange[0].transform.position);
-            GameObject _lastTarget = collidersInRange[0].gameObject;
-            for (int i = 1; i < collidersInRange.Length; i++)
+            float _lastDistance = 10000;
+            GameObject _lastTarget = null;
+            for (int i = 0; i < collidersInRange.Length; i++)
             {
-                if (collidersInRange[i].gameObject.tag.Contains("Enemy"))
+                if (collidersInRange[i].gameObject.CompareTag("Enemy"))
                 {
                     float distance = Vector3.Distance(transform.position, collidersInRange[i].transform.position);
                     if (distance < _lastDistance)
@@ -49,19 +49,19 @@ public class TurretParent : MonoBehaviour
                     }
                 }
             }
-            _currentTarget = _lastTarget.gameObject;
+            _currentTarget = _lastTarget;
         }
         else
         {
             _currentTarget = null;
         }
-        _lastTargetUpdate = (long) (Time.fixedTime + turretStats.targetUpdateInterval);
+        _lastTargetUpdate = Time.fixedTime + turretStats.targetUpdateInterval;
     }
     
     public virtual void shootTarget(){}
     
-    public Vector3 getVectorToTarget()
+    public Vector3 getVectorToTarget(GameObject target)
     {
-        return _currentTarget.transform.position - transform.position;
+        return target.transform.position - transform.position;
     }
 }
