@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     public List<SpawnType> spawnTypes = new List<SpawnType>();
+    public StopPoint stopPoint;
 }
 
 public enum SpawnType
