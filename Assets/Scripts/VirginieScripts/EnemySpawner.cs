@@ -169,11 +169,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetMultiplier(EnemyAgent newAgent)
     {
-        if (newAgent.type.name == "Asteroid")
+        if (newAgent.enemyType.name == "Asteroid")
         {
             newAgent.SetSpeed(speedMultiplier);
         }
-        else if (newAgent.type.name == "WeakEnemy")
+        else if (newAgent.enemyType.name == "WeakEnemy")
         {
             newAgent.SetDamage(damageWeakMultiplier);
             newAgent.SetFireRate(fireRateWeakMultiplier);
@@ -187,15 +187,15 @@ public class EnemySpawner : MonoBehaviour
 
     private List<SpawnPoint> FindSpawnPoint(EnemyAgent agent)
     {
-        if (agent.type.name == "Asteroid")
+        if (agent.enemyType.name == "Asteroid")
         {
             return asteroidSpawnPoint;
         }
-        else if (agent.type.name == "WeakEnemy")
+        else if (agent.enemyType.name == "WeakEnemy")
         {
             return weakSpawnPoint;
         }
-        else if (agent.type.name == "StrongEnemy")
+        else if (agent.enemyType.name == "StrongEnemy")
         {
             return strongSpawnPoint;
         }
@@ -205,8 +205,9 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform FindTarget(EnemyAgent agent, SpawnPoint spawnPoint)
     {
-        if (agent.type.name == "Asteroid")
+        if (agent.enemyType.name == "Asteroid")
         {
+            if (ShipManager.Instance == null) return null;
             return ShipManager.Instance.transform;
         }
         else

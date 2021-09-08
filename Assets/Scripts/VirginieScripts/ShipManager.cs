@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(HealthBar))]
+[RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(HealthUI))]
 public class ShipManager : MonoBehaviour
 {
-    HealthBar health;
+    HealthSystem health;
     public static ShipManager Instance { get; set; }
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class ShipManager : MonoBehaviour
     }
     private void Start()
     {
-        health = GetComponent<HealthBar>();
+        health = GetComponent<HealthSystem>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
