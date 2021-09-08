@@ -6,16 +6,27 @@ public class EnemySpawner : MonoBehaviour
 {
     public List<EnemyList> enemyList = new List<EnemyList>();
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
-    public float timeBeforeStartWave = 3.0f;
-    public float timeBeforeSpawn = 1.0f;
-    public int enemyNbToAddEachWave = 1;
-    public int waveCount = 0;
+    public float timeBeforeStartWave = 3.0f,
+                    timeBeforeSpawn = 1.0f;
+    public float speedMultiplierIncremental = 0.5f;
+    public float damageMultiplierIncremental = 0.5f;
+    public float fireRateMultiplierIncremental = 0.5f;
+    [HideInInspector]
+    private float speedMultiplier = 1.0f,
+                    damageWeakMultiplier = 1.0f,
+                    fireRateWeakMultiplier = 1.0f,
+                    damageStrongMultiplier = 1.0f,
+                    fireRateStrongMultiplier = 1.0f;
+
+
+    public int enemyNbToAddEachWave = 1,
+               waveCount = 0;
     public bool isWaveFinished = false;
 
     private bool hasSpawn = false;
-    private List<SpawnPoint> asteroidSpawnPoint = new List<SpawnPoint>();
-    private List<SpawnPoint> weakSpawnPoint = new List<SpawnPoint>();
-    private List<SpawnPoint> strongSpawnPoint = new List<SpawnPoint>();
+    private List<SpawnPoint> asteroidSpawnPoint = new List<SpawnPoint>(),
+                             weakSpawnPoint = new List<SpawnPoint>(),
+                            strongSpawnPoint = new List<SpawnPoint>();
 
     [SerializeField] float timer = 0f;
 
@@ -45,11 +56,17 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
+        timer += Time.deltaTime;
+
         // TEST
         if (isWaveFinished)
         {
             CreateWave();
         }
+
+        if (timer < timeBeforeStartWave) { return; }
+        timer = 0;
+        StartWave();
     }
     public void StartWave()
     {
@@ -78,7 +95,6 @@ public class EnemySpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(timeBeforeSpawn);
         }
-
     }
 
     private void SpawnThreeType()
@@ -147,24 +163,44 @@ public class EnemySpawner : MonoBehaviour
         List<SpawnPoint> currentSpawnPoints = FindSpawnPoint(agent);
         int spawnPointIndex = Random.Range(0, currentSpawnPoints.Count);
         SpawnPoint spawnPoint = currentSpawnPoints[spawnPointIndex];
-        GameObject enemy = Instantiate(enemyList[index].enemyPrefab, spawnPoint.transform.position, Quaternion.Euler(0, 0, 0));
-        EnemyAgent newAgent = enemy.GetComponent<EnemyAgent>();
+        GameObject newEnemy = Instantiate(enemyList[index].enemyPrefab, spawnPoint.transform.position, Quaternion.Euler(0, 0, 0));
+        EnemyAgent newAgent = newEnemy.GetComponent<EnemyAgent>();
         newAgent.SetTarget(FindTarget(newAgent, spawnPoint));
+        SetMultiplier(newAgent);
+
         enemyList[index].currentCount++;
         hasSpawn = true;
     }
 
+    private void SetMultiplier(EnemyAgent newAgent)
+    {
+        if (newAgent.enemyType.name == "Asteroid")
+        {
+            newAgent.SetSpeed(speedMultiplier);
+        }
+        else if (newAgent.enemyType.name == "WeakEnemy")
+        {
+            newAgent.SetDamage(damageWeakMultiplier);
+            newAgent.SetFireRate(fireRateWeakMultiplier);
+        }
+        else
+        {
+            newAgent.SetDamage(damageStrongMultiplier);
+            newAgent.SetFireRate(fireRateStrongMultiplier);
+        }
+    }
+
     private List<SpawnPoint> FindSpawnPoint(EnemyAgent agent)
     {
-        if (agent.type.name == "Asteroid")
+        if (agent.enemyType.name == "Asteroid")
         {
             return asteroidSpawnPoint;
         }
-        else if (agent.type.name == "WeakEnemy")
+        else if (agent.enemyType.name == "WeakEnemy")
         {
             return weakSpawnPoint;
         }
-        else if (agent.type.name == "StrongEnemy")
+        else if (agent.enemyType.name == "StrongEnemy")
         {
             return strongSpawnPoint;
         }
@@ -174,8 +210,9 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform FindTarget(EnemyAgent agent, SpawnPoint spawnPoint)
     {
-        if (agent.type.name == "Asteroid")
+        if (agent.enemyType.name == "Asteroid")
         {
+            if (ShipManager.Instance == null) return null;
             return ShipManager.Instance.transform;
         }
         else
@@ -187,8 +224,21 @@ public class EnemySpawner : MonoBehaviour
     {
         waveCount++;
         ResetEnemyCount();
+        IncrementEnemyCount();
+        IncrementMultiplier();
+        isWaveFinished = false;
+    }
 
-        //Increment Enemy
+    private void ResetEnemyCount()
+    {
+        foreach (EnemyList enemy in enemyList)
+        {
+            enemy.currentCount = 0;
+        }
+    }
+
+    private void IncrementEnemyCount()
+    {
         int rnd = Random.Range(0, 50);
         if (rnd < 25)
         {
@@ -203,14 +253,18 @@ public class EnemySpawner : MonoBehaviour
         {
             enemyList[2].maxCount++;
         }
-        isWaveFinished = false;
     }
 
-    private void ResetEnemyCount()
+    private void IncrementMultiplier()
     {
-        foreach (EnemyList enemy in enemyList)
+        speedMultiplier += speedMultiplierIncremental;
+        damageWeakMultiplier += damageMultiplierIncremental;
+        fireRateWeakMultiplier += fireRateMultiplierIncremental;
+
+        if(waveCount % 5 == 0)
         {
-            enemy.currentCount = 0;
+            damageStrongMultiplier += 0.5f;
+            fireRateStrongMultiplier += 0.5f;
         }
     }
 }

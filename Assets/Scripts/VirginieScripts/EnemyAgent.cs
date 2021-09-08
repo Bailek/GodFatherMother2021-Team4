@@ -1,51 +1,77 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(HealthBar))]
+[RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(SpriteRenderer))]
+[System.Serializable]
 public class EnemyAgent : MonoBehaviour
 {
-    public Enemy type;
+    public Enemy enemyType;
 
-    Rigidbody2D rb;
-    HealthBar health;
-    SpriteRenderer spriteRenderer;
-    ShipManager shipManager;
-    GameObject ship;
-    Transform target;
+    [Header ("  DEBUG")]
+    public float damage = 0.0f;
+    public Transform target;
+    public Vector2 speed;
 
-    private void Awake()
+    private HealthSystem health;
+    private SpriteRenderer spriteRenderer;
+    public ShipManager shipManager;
+    public GameObject ship;
+    private Vector2 saveVelocity;
+
+    public virtual void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        health = GetComponent<HealthBar>();
+        health = GetComponent<HealthSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health.SetMaxHealth(type.health);
-        spriteRenderer.sprite = type.sprite;
+        health.SetMaxHealth(enemyType.health);
+        spriteRenderer.sprite = enemyType.sprite;
+        speed = new Vector2(enemyType.speed, enemyType.speed);
+        damage = enemyType.damage;
     }
-    private void Start()
+    public virtual void Start()
     {
         shipManager = ShipManager.Instance;
+
+        if (shipManager == null) return;
         ship = shipManager.gameObject;
     }
 
+    public virtual void Update()
+    {
+        if (shipManager != null || ship != null)
+        {
+            MoveToTarget();
+            RotateTowardShip();
+        }
+        else
+        {
+            ContinueMove();
+        }
+    }
+
+    private void ContinueMove()
+    {
+        transform.position += (Vector3)saveVelocity;
+    }
     public void SetTarget(Transform value)
     {
         target = value;
     }
 
-    private void FixedUpdate()
+    public virtual void MoveToTarget()
     {
-        if (shipManager != null)
-        {
-            MoveToTarget();
-            RotateTowardShip();
-        }
+        Vector2 vEnemyShip = target.position - transform.position;
+        Vector2 dirEnemy = vEnemyShip.normalized;
+        Vector2.ClampMagnitude(speed, enemyType.maxSpeed);
+        Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
+
+        transform.position += (Vector3)velocity;
+
+        saveVelocity = velocity;
     }
 
-    private void RotateTowardShip()
+    public void RotateTowardShip()
     {
         float angle = 0f;
         Vector3 forward = transform.position + Vector3.up;
@@ -56,14 +82,7 @@ public class EnemyAgent : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    private void MoveToTarget()
-    {
-        Vector2 vEnemyShip = target.position - transform.position;
-        Vector2 dirEnemy = vEnemyShip.normalized;
-        Vector2 speed = new Vector2(type.speed, type.speed);
-        Vector2.ClampMagnitude(speed, type.maxSpeed);
-        Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
-
-        transform.position += (Vector3)velocity;
-    }
+    public virtual void SetSpeed(float _speedMultiplier) { }
+    public virtual void SetDamage(float _damageMultiplier) { }
+    public virtual void SetFireRate(float _rateOfFireMultiplier) { }
 }

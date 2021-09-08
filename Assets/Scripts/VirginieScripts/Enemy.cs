@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Enemy : ScriptableObject
 {
-    public int health = 1;
-    public int damage = 10;
-    public int speed = 10;
-    public int maxSpeed = 20;
+    public float health = 1.0f;
+    public float damage = 10.0f;
+    public float speed = 10.0f;
+    public float maxSpeed = 20.0f;
 
     public Sprite sprite;
     public Sprite spriteOnDestroy;
-    public List<float> multipliers = new List<float>();
-    public virtual List<float> GetMultiplier()
+
+    public virtual float GetFireRate()
     {
-        return multipliers;
+        return 0.0f;
     }
     public virtual void OnDestroy()
     {

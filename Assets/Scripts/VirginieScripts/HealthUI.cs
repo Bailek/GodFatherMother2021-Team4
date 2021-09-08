@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(HealthBar))]
+[RequireComponent(typeof(HealthSystem))]
 public class HealthUI : MonoBehaviour
 {
     public Sprite fullHealth;
     public Sprite midHealth;
     public Sprite lowHealth;
 
-    HealthBar health;
+    HealthSystem health;
     SpriteRenderer spriteRenderer;
     int healthPart;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health = GetComponent<HealthBar>();
-        healthPart = health.maxHealth / 3;
+        health = GetComponent<HealthSystem>();
+        healthPart = (int)(health.maxHealth / 3);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+
 public class Spaceship : MonoBehaviour
 {
+    public static Spaceship instance;
+
     [Serializable]
     public class HealthState
     {
@@ -16,15 +19,11 @@ public class Spaceship : MonoBehaviour
     public float maxHealth;
     private float currentHealth;
 
-    public DropZone[] Zones;
-    
-
     private void Awake()
     {
-        for(int i =0; i < Zones.Length; i++)
-        {
-
-        }
+        if (instance == null) { instance = this; }
+        else { Destroy(gameObject); }
+        
         currentHealth = maxHealth;
         GetComponent<SpriteRenderer>().sprite = states[0].sprite;
     }
@@ -82,8 +81,7 @@ public class Spaceship : MonoBehaviour
         else
         {
             //Death
-            Debug.LogWarning("Death");
-            // Destroy(gameObject);
+            GameManager.instance.EndGame();
         }
         Debug.Log(currentHealth);
     }
