@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c1b6a4648c6f14f813a98f91394f41, type: 3}
   m_Name: BasicTurret
   m_EditorClassIdentifier: 
-  radius: 100
-  rotateSpeed: 100
-  fireRate: 0.5
-  targetUpdateInterval: 0.5
+  radius: 10
+  rotateSpeed: 10
+  fireRate: 0.1
+  targetUpdateInterval: 1

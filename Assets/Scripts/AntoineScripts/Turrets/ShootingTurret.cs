@@ -23,16 +23,14 @@ public class ShootingTurret : TurretParent
     public override void shootTarget()
     {
         int layerMask = 1 << 11;
-        RaycastHit hit;
-        Physics.Raycast( transform.position, transform.up, out hit, turretStats.radius, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast( transform.position, transform.up, turretStats.radius, layerMask);
         if (hit.collider != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, transform);
             bullet.transform.SetParent(null);
-            bullet.transform.position = new Vector3(bullet.transform.position.x, bullet.transform.position.y,
-                bullet.transform.position.z + .15f);
             bullet.GetComponent<Bullet>().target = getVectorToTarget(hit.collider.gameObject);
+            
+            _lastShoot = Time.time + turretStats.fireRate;
         }
-        _lastShoot = Time.time + turretStats.fireRate;
     }
 }
