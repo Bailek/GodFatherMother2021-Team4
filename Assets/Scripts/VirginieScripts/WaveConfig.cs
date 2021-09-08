@@ -2,31 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New WaveConfig", menuName = "AI/WaveConfig")]
+//[CreateAssetMenu(fileName = "New WaveConfig", menuName = "AI/WaveConfig")]
 public class WaveConfig : ScriptableObject
 {
-    public List<EnemyConfig> enemyList = new List<EnemyConfig>();
-    public float timeBeforeStartWave = 3.0f;
-    public int enemyIncremental = 1;
-    
-    //public List<Transform> GetWaypoints()
+    //public List<EnemyConfig> enemyList = new List<EnemyConfig>();
+    //public float timeBeforeStartWave = 3.0f;
+    //public int enemyIncremental = 1;
+
+    //public void ResetEnemyNumber()
     //{
-    //    var waveWaypoints = new List<Transform>();
-
-    //    foreach (Transform child in pathPrefab.transform)
+    //    foreach(EnemyConfig enemy in enemyList)
     //    {
-    //        waveWaypoints.Add(child);
+    //        enemy.currentNumberSpawn = 0;
     //    }
-    //    return waveWaypoints;
     //}
-
-    public float GetTimeBeforeStartWave() { return timeBeforeStartWave; }
-    public int GetEnemyIncremental = 1;
 }
 
-[System.Serializable]
-public class EnemyConfig
-{
-    public GameObject enemyPrefab;
-    public int startNumber;
-}
+//[System.Serializable]
+//public class EnemyConfig
+//{
+//    public GameObject enemyPrefab;
+//    public int startNumber;
+//    public int currentNumberSpawn;
+//}
