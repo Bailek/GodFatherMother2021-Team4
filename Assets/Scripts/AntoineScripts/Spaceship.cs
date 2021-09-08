@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class Spaceship : MonoBehaviour
 {
     [Serializable]
@@ -17,8 +16,15 @@ public class Spaceship : MonoBehaviour
     public float maxHealth;
     private float currentHealth;
 
+    public DropZone[] Zones;
+    
+
     private void Awake()
     {
+        for(int i =0; i < Zones.Length; i++)
+        {
+
+        }
         currentHealth = maxHealth;
         GetComponent<SpriteRenderer>().sprite = states[0].sprite;
     }
