@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 public class Drop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Drag.Slot typeOfCard = Drag.Slot.TOURET;
+    public Transform newParent = null;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("OnPointerEnter");
+        Drag d = eventData.pointerDrag.GetComponent<Drag>();
+        d.parentToReturnTo = eventData.pointerDrag.GetComponent<Drop>().newParent;
 
     }
     public void OnPointerExit(PointerEventData eventData)

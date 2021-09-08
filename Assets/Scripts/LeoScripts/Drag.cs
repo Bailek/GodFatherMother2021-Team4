@@ -15,29 +15,22 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
-        
-        //parentToReturnTo = this.transform.parent;
-        //this.transform.SetParent(this.transform.parent.parent);
-        //GetComponent<CanvasGroup>().blocksRaycasts = false;
+        parentToReturnTo = this.transform.parent;
+        this.transform.SetParent(this.transform.parent);
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log("OnDrag");
-        //this.transform.position = eventData.position;
+        Debug.Log("OnDrag");
+        this.transform.position = eventData.position;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log("OnEndDrag");
-        //if (LastCard != null)
-        //{
-        //    LastCard.GetComponent<CardDisplay>();
-        //    Destroy(this.gameObject);
-        //}
-        //this.transform.SetParent(parentToReturnTo);
-        //GetComponent<CanvasGroup>().blocksRaycasts = true;
-        
+        Debug.Log("OnEndDrag");
+        this.transform.SetParent(parentToReturnTo);
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+
     }
 
-    
+
 }
