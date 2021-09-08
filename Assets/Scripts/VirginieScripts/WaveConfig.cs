@@ -2,30 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WaveConfig", menuName = "ProjectMullover/WaveConfig", order = 0)]
+//[CreateAssetMenu(fileName = "New WaveConfig", menuName = "AI/WaveConfig")]
 public class WaveConfig : ScriptableObject
 {
+    //public List<EnemyConfig> enemyList = new List<EnemyConfig>();
+    //public float timeBeforeStartWave = 3.0f;
+    //public int enemyIncremental = 1;
 
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] GameObject pathPrefab;
-    [SerializeField] float timeBetweenWave = 0.5f;
-    [SerializeField] float waveRandomFactor = 0.3f;
-    [SerializeField] int numberOfEnemies = 5;
-    [SerializeField] float moveSpeed = 2f;
-
-    public GameObject GetEnemyPrefab() { return enemyPrefab; }
-    public List<Transform> GetWaypoints()
-    {
-        var waveWaypoints = new List<Transform>();
-
-        foreach (Transform child in pathPrefab.transform)
-        {
-            waveWaypoints.Add(child);
-        }
-        return waveWaypoints;
-    }
-    public float GetTimeBetweenSpawn() { return timeBetweenWave; }
-    public float GetWaveRandomFactor() { return waveRandomFactor; }
-    public int GetNumberOfEnemies() { return numberOfEnemies; }
-    public float GetMoveSpeed() { return moveSpeed; }
+    //public void ResetEnemyNumber()
+    //{
+    //    foreach(EnemyConfig enemy in enemyList)
+    //    {
+    //        enemy.currentNumberSpawn = 0;
+    //    }
+    //}
 }
+
+//[System.Serializable]
+//public class EnemyConfig
+//{
+//    public GameObject enemyPrefab;
+//    public int startNumber;
+//    public int currentNumberSpawn;
+//}
