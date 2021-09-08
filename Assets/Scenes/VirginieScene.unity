@@ -849,7 +849,7 @@ MonoBehaviour:
   - {fileID: 25163783}
   - {fileID: 1911398805}
   timeBeforeStartWave: 3
-  timeBeforeSpawn: 0.1
+  timeBeforeSpawn: 1
   speedMultiplierIncremental: 0.5
   damageMultiplierIncremental: 0.5
   fireRateMultiplierIncremental: 0.5

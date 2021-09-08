@@ -18,6 +18,7 @@ public class EnemyAgent : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public ShipManager shipManager;
     public GameObject ship;
+    private Vector2 saveVelocity;
 
     public virtual void Awake()
     {
@@ -38,12 +39,21 @@ public class EnemyAgent : MonoBehaviour
 
     public virtual void Update()
     {
-        if (shipManager == null || ship == null) return;
-
-        MoveToTarget();
-        RotateTowardShip();
+        if (shipManager != null || ship != null)
+        {
+            MoveToTarget();
+            RotateTowardShip();
+        }
+        else
+        {
+            ContinueMove();
+        }
     }
 
+    private void ContinueMove()
+    {
+        transform.position += (Vector3)saveVelocity;
+    }
     public void SetTarget(Transform value)
     {
         target = value;
@@ -57,6 +67,8 @@ public class EnemyAgent : MonoBehaviour
         Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
 
         transform.position += (Vector3)velocity;
+
+        saveVelocity = velocity;
     }
 
     public void RotateTowardShip()
