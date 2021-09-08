@@ -12,4 +12,10 @@ public class AsteroidAgent : EnemyAgent
         speedMultiplier = _speedMultiplier;
         speed = new Vector2(enemyType.speed * speedMultiplier, enemyType.speed * speedMultiplier);
     }
+
+    public override void Update()
+    {
+        base.Update();
+
+    }
 }

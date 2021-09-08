@@ -56,11 +56,17 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
+        timer += Time.deltaTime;
+
         // TEST
         if (isWaveFinished)
         {
             CreateWave();
         }
+
+        if (timer < timeBeforeStartWave) { return; }
+        timer = 0;
+        StartWave();
     }
     public void StartWave()
     {
@@ -89,7 +95,6 @@ public class EnemySpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(timeBeforeSpawn);
         }
-
     }
 
     private void SpawnThreeType()

@@ -10,6 +10,7 @@ public class EnemyBullet : MonoBehaviour
     private ShipManager shipManager;
     private GameObject ship;
     private Transform target;
+    private Vector2 saveVelocity;
 
     private void Start()
     {
@@ -23,12 +24,41 @@ public class EnemyBullet : MonoBehaviour
     {
         if(shipManager != null)
         {
-            Vector2 vBulletShip = target.position - transform.position;
-            Vector2 dirBullet = vBulletShip.normalized;
-            Vector2 velocity = dirBullet * speed * Time.fixedDeltaTime;
-
-            transform.position += (Vector3)velocity;
+            MoveToShip();
+            RotateToShip();
         }
+        else
+        {
+            ContinueMove();
+        }
+    }
+
+    public void MoveToShip()
+    {
+
+        Vector2 vBulletShip = target.position - transform.position;
+        Vector2 dirBullet = vBulletShip.normalized;
+        Vector2 velocity = dirBullet * speed * Time.fixedDeltaTime;
+
+        transform.position += (Vector3)velocity;
+
+        saveVelocity = velocity;
+    }
+
+    public void ContinueMove()
+    {
+        transform.position += (Vector3)saveVelocity;
+    }
+
+    public void RotateToShip()
+    {
+        float angle = 0f;
+        Vector3 forward = transform.position + Vector3.up;
+        Vector3 vForwardToTarget = ship.transform.position - forward;
+        Vector3 dirForwardToTarget = vForwardToTarget.normalized;
+        angle = Mathf.Atan2(dirForwardToTarget.y, dirForwardToTarget.x) * Mathf.Rad2Deg - 90f;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
     public void SetDamage(int value)
     {
