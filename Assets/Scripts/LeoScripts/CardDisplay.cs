@@ -6,11 +6,19 @@ using UnityEngine.EventSystems;
 
 public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public enum Slot { TOURET, HEAL, BOOST, HAND }
+    public enum Slot { TOURET, HEAL, ZAPPER, LAZER, MEGABOOSTER }
     public Slot typeOfCard = Slot.TOURET;
     public Vector3 positionToReturnTo;
     public GameObject PanelCard;
 
+    public Card card;
+
+    public Image artworkImage;
+    public Image articonImage;
+
+    public Text statText;
+    public Text numberText;
+    private StackCard stackCard;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -30,14 +38,6 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     }
 
-    public Card card;
-
-    public Image artworkImage;
-    public Image articonImage;
-
-    public Text statText;
-    public Text numberText;
-    private StackCard stackCard;
 
     public void OnPosition()
     {
