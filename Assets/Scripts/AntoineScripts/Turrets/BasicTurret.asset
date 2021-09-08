@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BasicTurret
   m_EditorClassIdentifier: 
   radius: 10
-  rotateSpeed: 10
+  rotateSpeed: 20
   fireRate: 0.1
   targetUpdateInterval: 1
