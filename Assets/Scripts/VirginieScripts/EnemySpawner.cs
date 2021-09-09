@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public float damageMultiplierIncremental = 0.5f;
     public float fireRateMultiplierIncremental = 0.5f;
     public int enemyNbToAddEachWave = 1;
-
+    public float radiusAroundStopPoint = 2.0f;
     private float speedMultiplier = 1.0f,
                 damageWeakMultiplier = 1.0f,
                 fireRateWeakMultiplier = 1.0f,
@@ -26,9 +26,14 @@ public class EnemySpawner : MonoBehaviour
                             strongSpawnPoint = new List<SpawnPoint>();
 
     private float timer = 0f;
+    private float camHeight, camWidth;
 
     private void Awake()
     {
+        Camera cam = Camera.main;
+        camHeight = 2f * cam.orthographicSize;
+        camWidth = camHeight * cam.aspect;
+
         CreateListSpawnPointsByType();
     }
     private void CreateListSpawnPointsByType()
@@ -162,7 +167,8 @@ public class EnemySpawner : MonoBehaviour
         SpawnPoint spawnPoint = currentSpawnPoints[spawnPointIndex];
         GameObject newEnemy = Instantiate(enemyList[index].enemyPrefab, spawnPoint.transform.position, Quaternion.Euler(0, 0, 0));
         EnemyAgent newAgent = newEnemy.GetComponent<EnemyAgent>();
-        newAgent.SetTarget(FindTarget(newAgent, spawnPoint));
+        Vector3 target = FindTarget(newAgent, spawnPoint);
+        newAgent.SetTarget(target);
         SetMultiplier(newAgent);
 
         enemyList[index].currentCount++;
@@ -214,18 +220,16 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            float rnd = Random.Range(0, 1);
-            float radius = 10.0f;
-            float r = radius * Mathf.Sqrt(rnd);
-            float theta = rnd * 2 * Mathf.PI;
             float xCenter = spawnPoint.stopPoint.transform.position.x;
             float yCenter = spawnPoint.stopPoint.transform.position.y;
-            float x = xCenter + r * Mathf.Cos(theta);
-            float y = yCenter + r * Mathf.Sin(theta);
-            Vector3 target = new Vector3(x, y, 0);
-            return spawnPoint.stopPoint.transform.position;
+            Vector2 center = new Vector2(xCenter, yCenter);
+            Vector2 randomPoint = center + Random.insideUnitCircle * radiusAroundStopPoint * 0.5f;
+            Vector3 target = new Vector3(randomPoint.x, randomPoint.y, 0);
+
+            return target;
         }
     }
+
     private void CreateWave()
     {
         waveCount++;

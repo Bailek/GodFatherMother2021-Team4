@@ -17,6 +17,6 @@ MonoBehaviour:
   maxDamage: 20
   speed: 1
   maxSpeed: 20
-  rotationSpeed: 100
-  sprite: {fileID: 21300000, guid: 1af5fd4a20c916e40b603aa1f00c2d55, type: 3}
+  rotationSpeed: 1
+  sprite: {fileID: 21300000, guid: 0ce297bcce9f7b64ca0f84bb523cf0ae, type: 3}
   spriteOnDestroy: {fileID: 0}

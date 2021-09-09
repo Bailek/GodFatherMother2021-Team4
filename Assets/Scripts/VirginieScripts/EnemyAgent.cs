@@ -35,24 +35,12 @@ public class EnemyAgent : MonoBehaviour
 
         if (shipManager == null) return;
         ship = shipManager.gameObject;
+        CalculateVelocity();
     }
 
     public virtual void Update()
     {
-        if (shipManager != null || ship != null)
-        {
-            MoveToTarget();
-            RotateTowardTarget();
-        }
-        else
-        {
-            ContinueMove();
-        }
-    }
-
-    private void ContinueMove()
-    {
-        transform.position += (Vector3)saveVelocity;
+        MoveToTarget();
     }
     public void SetTarget(Vector3 value)
     {
@@ -61,23 +49,24 @@ public class EnemyAgent : MonoBehaviour
 
     public void MoveToTarget()
     {
+        transform.position += (Vector3)saveVelocity;
+    }
+
+    public virtual void CalculateVelocity()
+    {
         Vector2 vEnemyShip = target - transform.position;
         Vector2 dirEnemy = vEnemyShip.normalized;
         Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
-
-        transform.position += (Vector3)velocity;
-
         saveVelocity = velocity;
     }
 
-    public void RotateTowardTarget()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Vector3 forward = transform.position + Vector3.up;
-        Vector3 vForwardToShip = ship.transform.position - forward;
-        Vector3 dirToShip = vForwardToShip.normalized;
-        float angle = Mathf.Atan2(dirToShip.y, dirToShip.x) * Mathf.Rad2Deg - 90f;
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        if (other.gameObject.tag.Contains("Bullet"))
+        {
+            health.TakeDamage(1);
+            Destroy(other.gameObject);
+        }
     }
 
     public void takeDamage(int value)
