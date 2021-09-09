@@ -17,12 +17,10 @@ public class Spaceship : MonoBehaviour
     [Serialize]
     public List<HealthState> states = new List<HealthState>();
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
     public DropZone[] Zones;
 
-
     
-        
     private void Awake()
     {
         for (int i = 0; i < Zones.Length; i++)
@@ -41,7 +39,7 @@ public class Spaceship : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            HealShip(10);
+            HealShip(20);
         }
     }
 
@@ -60,33 +58,46 @@ public class Spaceship : MonoBehaviour
         UpdateState();
     }
 
-    private void HealShip(int value)
+    private void HealShip(float value)
     {
-        if (currentHealth + value <= maxHealth)
+        StartCoroutine(healProcess(value));
+    }
+
+    IEnumerator healProcess(float value, float seconds = 10f)
+    {
+        float healPerSec = value / seconds;
+        Debug.Log("step " + healPerSec);
+
+        while (value > 0)
         {
-            currentHealth += value;
+            currentHealth += healPerSec;
+            value -= healPerSec;
+            Debug.Log("heal " + currentHealth);
             UpdateState();
+            yield return new WaitForSeconds(1f);
         }
+        
+        yield return null;
     }
 
     private void UpdateState()
     {
-        //if (currentHealth > 0)
-        //{
-        //    int index = 0;
-        //    for (int i = 0; i < states.Count; i++)
-        //    {
-        //        if (currentHealth <= states[i].minHealthPercentage)
-        //        {
-        //            index = i;
-        //        }
-        //        else
-        //        {
-        //            break;
-        //        }
-        //    }
-        //    GetComponent<SpriteRenderer>().sprite = states[index].sprite;
-        //}
+        if (currentHealth > 0)
+        {
+            int index = 0;
+            for (int i = 0; i < states.Count; i++)
+            {
+                if (currentHealth <= states[i].minHealthPercentage)
+                {
+                    index = i;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            GetComponent<SpriteRenderer>().sprite = states[index].sprite;
+        }
         //else
         //{
         //    //Death
