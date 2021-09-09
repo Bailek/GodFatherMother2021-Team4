@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(HealthUI))]
 public class ShipManager : MonoBehaviour
 {
     HealthSystem health;
+    public DropZone[] Zones;
     public static ShipManager Instance { get; set; }
     private void Awake()
     {

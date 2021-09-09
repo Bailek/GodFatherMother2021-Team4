@@ -854,6 +854,9 @@ MonoBehaviour:
   damageMultiplierIncremental: 0.1
   fireRateMultiplierIncremental: 0.1
   enemyNbToAddEachWave: 1
+  waveCount: 0
+  isWaveFinished: 0
+  timer: 0
 --- !u!4 &1087954114
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,10 +1524,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9203408397496588394, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
-      propertyPath: Zones.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9203408397496588395, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
       propertyPath: maxHealth
       value: 1000

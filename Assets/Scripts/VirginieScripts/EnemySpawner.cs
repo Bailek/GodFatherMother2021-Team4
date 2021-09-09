@@ -11,24 +11,21 @@ public class EnemySpawner : MonoBehaviour
     public float speedMultiplierIncremental = 0.5f;
     public float damageMultiplierIncremental = 0.5f;
     public float fireRateMultiplierIncremental = 0.5f;
-    [HideInInspector]
+    public int enemyNbToAddEachWave = 1;
+
     private float speedMultiplier = 1.0f,
-                    damageWeakMultiplier = 1.0f,
-                    fireRateWeakMultiplier = 1.0f,
-                    damageStrongMultiplier = 1.0f,
-                    fireRateStrongMultiplier = 1.0f;
-
-
-    public int enemyNbToAddEachWave = 1,
-               waveCount = 0;
-    public bool isWaveFinished = false;
-
+                damageWeakMultiplier = 1.0f,
+                fireRateWeakMultiplier = 1.0f,
+                damageStrongMultiplier = 1.0f,
+                fireRateStrongMultiplier = 1.0f;
+    private int waveCount = 0;
+    private bool isWaveFinished = false;
     private bool hasSpawn = false;
     private List<SpawnPoint> asteroidSpawnPoint = new List<SpawnPoint>(),
                              weakSpawnPoint = new List<SpawnPoint>(),
                             strongSpawnPoint = new List<SpawnPoint>();
 
-    [SerializeField] float timer = 0f;
+    private float timer = 0f;
 
     private void Awake()
     {
