@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 893271479
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.9529412, g: 0.45727247, b: 0.066666685, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 93c979696af34184483bb50ef7937dfe, type: 3}
+  m_Color: {r: 0.06465184, g: 0.8584906, b: 0.01214843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25917de3c8c1c8d4fa778cb6edea0bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zones: []
 --- !u!114 &9203408397496588395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8491aaf6abd5e439507e7c0634a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  max: 1000
   current: 100
-  max: 100
 --- !u!114 &9203408397496588436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,4 +147,4 @@ MonoBehaviour:
   - minHealthPercentage: 66
     sprite: {fileID: 21300000, guid: 7bc5d2b16fe64344896fc6846eba5ded, type: 3}
   - minHealthPercentage: 33
-    sprite: {fileID: 21300000, guid: 8795bdea8428eef49aa060e1dc6dd54b, type: 3}
+    sprite: {fileID: 21300000, guid: 7bc5d2b16fe64344896fc6846eba5ded, type: 3}

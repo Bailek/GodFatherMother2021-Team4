@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyShipAgent : EnemyAgent
 {
+    [Header("  ANIMATION")]
+    public AnimationCurve moveCurve;
+
     [Header("  BULLET")]
     public GameObject bulletPrefab;
 
@@ -16,7 +19,6 @@ public class EnemyShipAgent : EnemyAgent
 
     private EnemyBullet enemyBullet;
     private bool canShoot = false;
-    private bool hasFinishRotate2Ship = false;
 
     public override void Awake()
     {
@@ -26,6 +28,10 @@ public class EnemyShipAgent : EnemyAgent
         enemyBullet.damage = base.damage;
     }
 
+    public override void Start()
+    {
+        base.Start();
+    }
     public override void Update()
     {
         if (shipManager == null || ship == null) return;
@@ -33,11 +39,6 @@ public class EnemyShipAgent : EnemyAgent
         {
             MoveToTarget();
             VerifyHasArriveToTarget();
-            RotateTowardTarget();
-        }
-        else if(!hasFinishRotate2Ship)
-        {
-            RotateTowardShip();
         }
     }
     public void FixedUpdate()
@@ -45,6 +46,15 @@ public class EnemyShipAgent : EnemyAgent
         if (!canShoot) return;
         Shoot();
     }
+    public void RotateTowardTarget()
+    {
+        Vector3 forward = transform.position + Vector3.up;
+        Vector3 vForwardToTarget = target - forward;
+        Vector3 dirToShip = vForwardToTarget.normalized;
+        float angle = Mathf.Atan2(dirToShip.y, dirToShip.x) * Mathf.Rad2Deg - 90f;
+        transform.Rotate(new Vector3(0, 0, angle), Space.World);
+    }
+
     public void RotateTowardShip()
     {
         Vector3 forward = transform.position + Vector3.up;
@@ -74,10 +84,12 @@ public class EnemyShipAgent : EnemyAgent
     public void VerifyHasArriveToTarget()
     {
         float distance2Target = Vector2.Distance((Vector2)transform.position, target);
-        if (distance2Target <= 0.5f)
+        if (distance2Target <= 0.05f)
         {
             hasArriveOnTarget = true;
             transform.position = target;
+            target = ship.transform.position;
+            canShoot = true;
         }
     }
     public override void SetDamage(float _damageMultiplier)
