@@ -50,12 +50,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        // TEST
-        StartWave();
-    }
-
     public void StartWave()
     {
         StartCoroutine(SpawnEnemy());   
