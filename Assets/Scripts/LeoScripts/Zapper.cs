@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Zapper : MonoBehaviour
 {
+    public GameObject nova;
     public Animator Nova;
     private Charge charge;
     public Image chargeImage;
@@ -16,6 +17,7 @@ public class Zapper : MonoBehaviour
         charge = new Charge();
         ChargeReady = false;
     }
+    
     public void Update()
     {
         charge.Update();
