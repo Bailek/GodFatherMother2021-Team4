@@ -262,19 +262,8 @@ MonoBehaviour:
     mute: 0
     loop: 0
     playOnAwake: 0
-    clips: []
-    source: {fileID: 0}
-  - name: 
-    type: 0
-    volume: 0
-    pitch: 0
-    spatialBlend: 0
-    minDist3D: 0
-    maxDist3D: 0
-    mute: 0
-    loop: 0
-    playOnAwake: 0
-    clips: []
+    clips:
+    - {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &51055301
 Transform:

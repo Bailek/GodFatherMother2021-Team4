@@ -9,11 +9,7 @@ public class SoundManager : MonoBehaviour
     public Sound[] sounds;
 
     private AudioMixer audioMixer;
-    private AudioMixerGroup masterGroup;
-    private AudioMixerGroup musicGroup;
-    private AudioMixerGroup ambientGroup;
-    private AudioMixerGroup sfxGroup;
-    private AudioMixerGroup uiGroup;
+    private AudioMixerGroup audioMixerGroup;
 
     public static SoundManager Instance { get; private set; }
     private void Awake()
@@ -25,17 +21,8 @@ public class SoundManager : MonoBehaviour
 
             //Load AudioMixer
             audioMixer = Resources.Load<AudioMixer>("Audio/NewAudioMixer");
-
-            //Find AudioMixerGroup you want to load
-            AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master/Music");
-            musicGroup = audioMixGroup[0];
-            audioMixGroup = audioMixer.FindMatchingGroups("Master/Ambient");
-            ambientGroup = audioMixGroup[0];
-            audioMixGroup = audioMixer.FindMatchingGroups("Master/SFX");
-            sfxGroup = audioMixGroup[0];
-            audioMixGroup = audioMixer.FindMatchingGroups("Master/UI");
-            uiGroup = audioMixGroup[0];
-
+            AudioMixerGroup[] audioMixArray = audioMixer.FindMatchingGroups("Master");
+            audioMixerGroup = audioMixArray[0];
             foreach (Sound s in sounds)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
@@ -49,17 +36,8 @@ public class SoundManager : MonoBehaviour
                 s.source.mute = s.mute;
                 s.source.loop = s.loop;
                 s.source.playOnAwake = s.playOnAwake;
-
-                switch (s.type)
-                {
-                    case SoundType.MUSIC: s.source.outputAudioMixerGroup = musicGroup; break;
-                    case SoundType.AMBIENT: s.source.outputAudioMixerGroup = ambientGroup; break;
-                    case SoundType.SFX: s.source.outputAudioMixerGroup = sfxGroup; break;
-                    case SoundType.UI: s.source.outputAudioMixerGroup = uiGroup; break;
-                }
+                s.source.outputAudioMixerGroup = audioMixerGroup;
             }
-
-            // | Listen To
         }
         else
         {
@@ -170,7 +148,7 @@ public class SoundManager : MonoBehaviour
 public class Sound
 {
     public string name;
-    public SoundType type;
+    //public SoundType type;
     //public AudioClip clip;
 
     [Range(0f, 1f)]
