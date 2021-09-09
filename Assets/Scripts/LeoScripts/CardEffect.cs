@@ -17,69 +17,90 @@ public class CardEffect : MonoBehaviour
     }
     public void EndEffect()
     {
-        switch (typeOfEffect)
+        Debug.Log("EndEffect");
+        if (typeOfEffect == Effect.TOURET)
         {
-            case Effect.TOURET:
-                Debug.Log("Toutrelle desactivate");
-                DespawnTouret();
-                typeOfEffect = Effect.NOTHING;
-                break;
-
-            case Effect.HEAL:
-                Debug.Log("Heal desactivate");
-                typeOfEffect = Effect.NOTHING;
-                break;
-
-            case Effect.LAZER:
-                Debug.Log("Lazer desactivate");
-                DespawnLazer();
-                typeOfEffect = Effect.NOTHING;
-                break;
-
-            case Effect.MEGABOOSTER:
-                Debug.Log("MegaBooster desactivate");
-                typeOfEffect = Effect.NOTHING;
-                break;
+            Debug.Log("Toutrelle desactivate");
+            typeOfEffect = Effect.NOTHING;
+            //DespawnTouret();
         }
+        else if (typeOfEffect == Effect.HEAL)
+        {
+            Debug.Log("Heal desactivate");
+            typeOfEffect = Effect.NOTHING;
+        }
+        else if (typeOfEffect == Effect.LAZER)
+        {
+            Debug.Log("Lazer desactivate");
+            typeOfEffect = Effect.NOTHING;
+            //DespawnLazer();
+        }
+        else if (typeOfEffect == Effect.MEGABOOSTER)
+        {
+            Debug.Log("MegaBooster desactivate");
+            typeOfEffect = Effect.NOTHING;
+        }
+
+        //switch (typeOfEffect)
+        //{
+        //    case Effect.TOURET:
+        //        Debug.Log("Toutrelle desactivate");
+        //        DespawnTouret();
+        //        typeOfEffect = Effect.NOTHING;
+        //        break;
+
+        //    case Effect.HEAL:
+        //        Debug.Log("Heal desactivate");
+        //        typeOfEffect = Effect.NOTHING;
+        //        break;
+
+        //    case Effect.LAZER:
+        //        Debug.Log("Lazer desactivate");
+        //        DespawnLazer();
+        //        typeOfEffect = Effect.NOTHING;
+        //        break;
+
+        //    case Effect.MEGABOOSTER:
+        //        Debug.Log("MegaBooster desactivate");
+        //        typeOfEffect = Effect.NOTHING;
+        //        break;
+        //}
     }
 
    
     public void ActivateEffect(CardDisplay obj)
     {
+        currentCard = obj;
         if(currentCard != null)
         {
             EndEffect();
         }
         
-        currentCard = obj;
+        
         switch (obj.typeOfCard)
         {
             case CardDisplay.Slot.TOURET:
                 Debug.Log("Toutrelle activate");
-                SpawnTouret();
                 typeOfEffect = Effect.TOURET;
-                obj.gameObject.SetActive(false);
+                //SpawnTouret();
                 break;
 
             case CardDisplay.Slot.HEAL:
                 Debug.Log("Heal activate");
-                Heal();
                 typeOfEffect = Effect.HEAL;
-                obj.gameObject.SetActive(false);
+                //Heal();
                 break;
 
             case CardDisplay.Slot.LAZER:
                 Debug.Log("Lazer activate");
-                SpawnLazer();
                 typeOfEffect = Effect.LAZER;
-                obj.gameObject.SetActive(false);
+                //SpawnLazer();
                 break;
 
             case CardDisplay.Slot.MEGABOOSTER:
                 Debug.Log("MegaBooster activate");
-                Booster();
                 typeOfEffect = Effect.MEGABOOSTER;
-                obj.gameObject.SetActive(false);
+                //Booster();
                 break;
         }
 
