@@ -71,27 +71,27 @@ public class Spaceship : MonoBehaviour
 
     private void UpdateState()
     {
-        if (currentHealth > 0)
-        {
-            int index = 0;
-            for (int i = 0; i < states.Count; i++)
-            {
-                if (currentHealth <= states[i].minHealthPercentage)
-                {
-                    index = i;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            GetComponent<SpriteRenderer>().sprite = states[index].sprite;
-        }
-        else
-        {
-            //Death
-            GameManager.instance.EndGame();
-        }
+        //if (currentHealth > 0)
+        //{
+        //    int index = 0;
+        //    for (int i = 0; i < states.Count; i++)
+        //    {
+        //        if (currentHealth <= states[i].minHealthPercentage)
+        //        {
+        //            index = i;
+        //        }
+        //        else
+        //        {
+        //            break;
+        //        }
+        //    }
+        //    GetComponent<SpriteRenderer>().sprite = states[index].sprite;
+        //}
+        //else
+        //{
+        //    //Death
+        //    GameManager.instance.EndGame();
+        //}
         Debug.Log(currentHealth);
     }
 }
