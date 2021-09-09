@@ -15,19 +15,19 @@ public class CardEffect : MonoBehaviour
 
         switch (dropZone.GetComponent<CardDisplay>().typeOfCard)
         {
-            case Slot.TOURET:
+            case CardDisplay.Slot.TOURET:
                 SpawnTouret();
                 break;
 
-            case Slot.HEAL:
+            case CardDisplay.Slot.HEAL:
                 Heal();
                 break;
 
-            case Slot.LAZER:
+            case CardDisplay.Slot.LAZER:
                 Lazer();
                 break;
 
-            case Slot.MEGABOOSTER:
+            case CardDisplay.Slot.MEGABOOSTER:
                 Booster();
                 break;
         }
