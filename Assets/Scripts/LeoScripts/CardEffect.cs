@@ -10,91 +10,83 @@ public class CardEffect : MonoBehaviour
     public Drop drop;
     public enum Effect { TOURET, HEAL, LAZER, MEGABOOSTER, NOTHING }
     public Effect typeOfEffect = Effect.NOTHING;
+  
+    public CardDisplay lastcurrentCard;
     public CardDisplay currentCard;
+
     private void Start()
     {
         drop.DropCallback += ActivateEffect;
     }
     public void EndEffect()
     {
+        lastcurrentCard = currentCard;
         Debug.Log("EndEffect");
         if (typeOfEffect == Effect.TOURET)
         {
             Debug.Log("Toutrelle desactivate");
             typeOfEffect = Effect.NOTHING;
-            //DespawnTouret();
+            Touret.SetActive(false);
+            lastcurrentCard.gameObject.SetActive(false);
         }
         else if (typeOfEffect == Effect.HEAL)
         {
             Debug.Log("Heal desactivate");
             typeOfEffect = Effect.NOTHING;
+            lastcurrentCard.gameObject.SetActive(false);
         }
         else if (typeOfEffect == Effect.LAZER)
         {
             Debug.Log("Lazer desactivate");
             typeOfEffect = Effect.NOTHING;
-            //DespawnLazer();
+            Lazer.SetActive(false);
+            lastcurrentCard.gameObject.SetActive(false);
         }
         else if (typeOfEffect == Effect.MEGABOOSTER)
         {
             Debug.Log("MegaBooster desactivate");
             typeOfEffect = Effect.NOTHING;
+            lastcurrentCard.gameObject.SetActive(false);
         }
 
-        //switch (typeOfEffect)
-        //{
-        //    case Effect.TOURET:
-        //        Debug.Log("Toutrelle desactivate");
-        //        DespawnTouret();
-        //        typeOfEffect = Effect.NOTHING;
-        //        break;
-
-        //    case Effect.HEAL:
-        //        Debug.Log("Heal desactivate");
-        //        typeOfEffect = Effect.NOTHING;
-        //        break;
-
-        //    case Effect.LAZER:
-        //        Debug.Log("Lazer desactivate");
-        //        DespawnLazer();
-        //        typeOfEffect = Effect.NOTHING;
-        //        break;
-
-        //    case Effect.MEGABOOSTER:
-        //        Debug.Log("MegaBooster desactivate");
-        //        typeOfEffect = Effect.NOTHING;
-        //        break;
-        //}
+        
     }
 
    
     public void ActivateEffect(CardDisplay obj)
     {
-        currentCard = obj;
+        
         if(currentCard != null)
         {
             EndEffect();
         }
-        
+        currentCard = obj;
         
         switch (obj.typeOfCard)
         {
+            
             case CardDisplay.Slot.TOURET:
-                Debug.Log("Toutrelle activate");
-                typeOfEffect = Effect.TOURET;
-                //SpawnTouret();
+                if(lastcurrentCard != currentCard)
+                {
+                    Debug.Log("Toutrelle activate");
+                    typeOfEffect = Effect.TOURET;
+                    Touret.SetActive(true);
+                }
                 break;
 
             case CardDisplay.Slot.HEAL:
                 Debug.Log("Heal activate");
                 typeOfEffect = Effect.HEAL;
-                //Heal();
+                //Spaceship.instance.HealShip(20);
                 break;
 
             case CardDisplay.Slot.LAZER:
-                Debug.Log("Lazer activate");
-                typeOfEffect = Effect.LAZER;
-                //SpawnLazer();
+                if (lastcurrentCard != currentCard)
+                {
+                    Debug.Log("Lazer activate");
+                    typeOfEffect = Effect.LAZER;
+                    Lazer.SetActive(true);
+                }
                 break;
 
             case CardDisplay.Slot.MEGABOOSTER:
@@ -103,39 +95,13 @@ public class CardEffect : MonoBehaviour
                 //Booster();
                 break;
         }
-
-
+        lastcurrentCard = currentCard;
+        currentCard.gameObject.SetActive(false);
+        
     }
     
 
-    private void Booster()
-    {
-        
-    }
-
-    private void SpawnLazer()
-    {
-        Lazer.SetActive(true);
-    }
-    private void DespawnLazer()
-    {
-        Lazer.SetActive(false);
-    }
-
-    private void SpawnTouret()
-    {
-        Touret.SetActive(true);
-
-    }
-    private void DespawnTouret()
-    {
-        Touret.SetActive(false);
-    }
-
-    public void Heal()
-    {
-        Spaceship.instance.HealShip(20);
-    }
+    
 
 
 }
