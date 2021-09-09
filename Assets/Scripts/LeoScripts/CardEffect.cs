@@ -13,24 +13,24 @@ public class CardEffect : MonoBehaviour
     public void ActivateEffect(Spaceship spaceship, DropZone dropZone)
     {
 
-        switch (dropZone.GetComponent<CardDisplay>().typeOfCard)
-        {
-            case CardDisplay.Slot.TOURET:
-                SpawnTouret();
-                break;
+        //switch (dropZone.GetComponent<CardDisplay>().typeOfCard)
+        //{
+        //    case Slot.TOURET:
+        //        SpawnTouret();
+        //        break;
 
-            case CardDisplay.Slot.HEAL:
-                Heal();
-                break;
+        //    case Slot.HEAL:
+        //        Heal();
+        //        break;
 
-            case CardDisplay.Slot.LAZER:
-                Lazer();
-                break;
+        //    case Slot.LAZER:
+        //        Lazer();
+        //        break;
 
-            case CardDisplay.Slot.MEGABOOSTER:
-                Booster();
-                break;
-        }
+        //    case Slot.MEGABOOSTER:
+        //        Booster();
+        //        break;
+        //}
             
 
     }

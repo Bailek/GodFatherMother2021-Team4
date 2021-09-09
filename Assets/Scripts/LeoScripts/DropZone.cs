@@ -11,7 +11,7 @@ public class DropZone : MonoBehaviour
     
     private void Awake()
     {
-        // drop.DropCallback += OnDropReceive;
+        //drop.DropCallback += OnDropReceive;
     }
 
     private void OnDropReceive(CardDisplay obj)
