@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: Placing_Cards
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerShip_Firing
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerShip_Touched_Asteroids
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerShip_No_More_PVs
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Placing_Repairing_Cards
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Cards_Turn_Off
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Placing_Booster_Card
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerShip_Destroyed
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Magnetic_Field_Ready
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Magnetic_Field_Used
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Enemies_Touched
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Firing_Strong_Enemy
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Firing_Weak_Enemy
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Enemies_Explosion
     volume: 0.3
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Main_Menu_Music
     volume: 0.3
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Game_Music
     volume: 0.3
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Jingle_Highscore
     volume: 0.3
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: During_Drag
     volume: 0.3
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: UI_Button
     volume: 0.3
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0
