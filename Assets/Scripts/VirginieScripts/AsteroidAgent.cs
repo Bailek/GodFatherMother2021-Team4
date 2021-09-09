@@ -8,7 +8,6 @@ public class AsteroidAgent : EnemyAgent
     public float randFactor = 4.0f;
     public float lifeTime = 5.0f;
     [Header("  DEBUG")]
-    [SerializeField] private float speedMultiplier = 1.0f;
     [SerializeField] private float timer = 0f;
 
     public override void CalculateVelocity()
