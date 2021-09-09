@@ -63,7 +63,6 @@ public class EnemyAgent : MonoBehaviour
     {
         Vector2 vEnemyShip = target.position - transform.position;
         Vector2 dirEnemy = vEnemyShip.normalized;
-        Vector2.ClampMagnitude(speed, enemyType.maxSpeed);
         Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
 
         transform.position += (Vector3)velocity;
