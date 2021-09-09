@@ -7,6 +7,7 @@ using UnityEngine;
 public class ShipManager : MonoBehaviour
 {
     private HealthSystem health;
+    private Animator animator;
     public static ShipManager Instance { get; set; }
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class ShipManager : MonoBehaviour
     private void Start()
     {
         health = GetComponent<HealthSystem>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,11 +27,16 @@ public class ShipManager : MonoBehaviour
             float damage = collision.gameObject.GetComponent<EnemyAgent>().damage;
             health.TakeDamage(damage);
             Destroy(collision.gameObject);
-        }else if (collision.gameObject.CompareTag("EnemyBullet"))
+
+            animator.Play("ShipDamage");
+        }
+        else if (collision.gameObject.CompareTag("EnemyBullet"))
         {
             float damage = collision.gameObject.GetComponent<EnemyBullet>().damage;
             health.TakeDamage(damage);
             Destroy(collision.gameObject);
+
+            animator.Play("ShipDamage");
         }
     }
 }

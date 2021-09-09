@@ -230,7 +230,6 @@ MonoBehaviour:
   typeOfCard: 0
   positionToReturnTo: {x: 0, y: 0, z: 0}
   PanelCard: {fileID: 0}
-  cardDisplay: {fileID: 0}
   card: {fileID: 11400000, guid: c47b93e77fec9b942830bbf7da21f090, type: 2}
   artworkImage: {fileID: 0}
   articonImage: {fileID: 0}

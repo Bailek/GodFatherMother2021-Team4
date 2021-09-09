@@ -25,6 +25,8 @@ public class EnemyBullet : MonoBehaviour
     private void Update()
     {
         MoveToShip();
+
+        if (shipManager == null) return;
         RotateToShip();
     }
 

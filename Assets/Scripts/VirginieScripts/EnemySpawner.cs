@@ -52,6 +52,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartWave()
     {
+        isWaveFinished = false;
         StartCoroutine(SpawnEnemy());   
     }
 

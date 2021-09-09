@@ -13,7 +13,7 @@ public class EnemyAgent : MonoBehaviour
     public float damage = 0.0f;
     public Vector3 target;
     public Vector2 speed;
-    public float speedMultiplier;
+    public float speedMultiplier = 1.0f;
 
     public HealthSystem health;
     public SpriteRenderer spriteRenderer;
