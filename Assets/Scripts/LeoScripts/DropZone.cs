@@ -16,7 +16,7 @@ public class DropZone : MonoBehaviour
 
     private void OnDropReceive(CardDisplay obj)
     {
-        obj.GetComponent<CardEffect>().ActivateEffect(spaceship, this);
+        //obj.GetComponent<CardEffect>().ActivateEffect(spaceship, this);
     }
 
     public void Init(Spaceship spaceship)
