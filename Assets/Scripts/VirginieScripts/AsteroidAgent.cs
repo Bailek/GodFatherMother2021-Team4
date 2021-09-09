@@ -10,7 +10,9 @@ public class AsteroidAgent : EnemyAgent
     public override void SetSpeed(float _speedMultiplier)
     {
         speedMultiplier = _speedMultiplier;
-        speed = new Vector2(enemyType.speed * speedMultiplier, enemyType.speed * speedMultiplier);
+        float newSpeed = enemyType.speed * speedMultiplier;
+        newSpeed = Mathf.Clamp(newSpeed, 0, base.enemyType.maxSpeed);
+        speed = new Vector2(newSpeed, newSpeed);
     }
 
     public override void Update()
