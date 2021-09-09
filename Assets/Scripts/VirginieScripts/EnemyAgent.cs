@@ -13,6 +13,7 @@ public class EnemyAgent : MonoBehaviour
     public float damage = 0.0f;
     public Vector3 target;
     public Vector2 speed;
+    public float speedMultiplier;
 
     public HealthSystem health;
     public SpriteRenderer spriteRenderer;
@@ -26,7 +27,7 @@ public class EnemyAgent : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health.SetMaxHealth(enemyType.health);
         spriteRenderer.sprite = enemyType.sprite;
-        speed = new Vector2(enemyType.speed, enemyType.speed);
+        speed = new Vector2(enemyType.speed, enemyType.speed) * speedMultiplier;
         damage = enemyType.damage;
     }
     public virtual void Start()
