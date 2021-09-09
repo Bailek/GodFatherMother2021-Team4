@@ -7,9 +7,26 @@ public class ParallaxSystem : MonoBehaviour
     public float speed = 0.1f;
 
     private RawImage img;
+    private Camera cam;
+    private RectTransform rectTransform;
+    private float camHeight, camWidth;
+    private float minHeight, maxHeight, minWidth, maxWidth;
+    private float length;
+
     private void Start()
     {
-        img = GetComponent<RawImage>(); 
+        cam = Camera.main;
+        camHeight = cam.orthographicSize;
+        camWidth = camHeight * cam.aspect;
+
+        minHeight = -camHeight;
+        maxHeight = camHeight;
+        minWidth = -camWidth;
+        maxWidth = camWidth;
+
+        img = GetComponent<RawImage>();
+        rectTransform = GetComponent<RectTransform>();
+        length = rectTransform.rect.width; 
     }
 
     private void Update()
