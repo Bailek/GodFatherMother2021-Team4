@@ -10,4 +10,5 @@ public class TurretStats : ScriptableObject
     public float rotateSpeed;
     public float fireRate;
     public float targetUpdateInterval;
+    public int damage;
 }

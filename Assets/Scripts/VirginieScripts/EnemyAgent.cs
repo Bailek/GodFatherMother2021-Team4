@@ -80,6 +80,11 @@ public class EnemyAgent : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
+    public void takeDamage(int value)
+    {
+        health.TakeDamage(value);
+    }
+
     public virtual void SetSpeed(float _speedMultiplier) { }
     public virtual void SetDamage(float _damageMultiplier) { }
     public virtual void SetFireRate(float _rateOfFireMultiplier) { }

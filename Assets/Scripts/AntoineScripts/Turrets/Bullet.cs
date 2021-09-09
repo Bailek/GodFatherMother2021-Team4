@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        timeLeft = Time.time + lifetime;
+        timeLeft = Time.fixedTime + lifetime;
     }
 
     void Update()
@@ -28,7 +28,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(gameObject);
         if (other.gameObject.tag.Contains("Enemy"))
         {
             Destroy(other.gameObject);
