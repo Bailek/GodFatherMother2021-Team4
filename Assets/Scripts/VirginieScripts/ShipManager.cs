@@ -6,8 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthUI))]
 public class ShipManager : MonoBehaviour
 {
-    public DropZone[] Zones;
-
+    
     private HealthSystem health;
     public static ShipManager Instance { get; set; }
     private void Awake()

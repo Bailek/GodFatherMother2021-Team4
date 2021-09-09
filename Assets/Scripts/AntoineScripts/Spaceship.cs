@@ -18,16 +18,11 @@ public class Spaceship : MonoBehaviour
     public List<HealthState> states = new List<HealthState>();
     public float maxHealth;
     public float currentHealth;
-    public DropZone[] Zones;
 
     
     private void Awake()
     {
-        for (int i = 0; i < Zones.Length; i++)
-        {
-
-        }
-
+        
         if (instance == null) { instance = this; }
         else { Destroy(gameObject); }
         

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardEffect : MonoBehaviour
@@ -94,12 +95,12 @@ public class CardEffect : MonoBehaviour
     private void SpawnTouret()
     {
         Touret1.SetActive(true);
-
+        
     }
 
     public void Heal()
     {
-        Spaceship.instance.HealShip(100);
+        //Spaceship.instance.HealShip(100);
     }
 
 
