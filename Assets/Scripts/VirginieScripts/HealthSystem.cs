@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float current = 100.0f;
+    #region Event
+    public delegate void HealthEvent();
+    public event HealthEvent OnTakeDamage;
+    public event HealthEvent OnHeal;
+    #endregion
+
     public float max = 100.0f;
+    [Header("   DEBUG")]
+    public float current = 100.0f;
 
     private void Start()
     {
@@ -24,6 +31,18 @@ public class HealthSystem : MonoBehaviour
         if (current <= 0)
         {
             Destroy(this.gameObject);
+            return;
         }
+
+        OnTakeDamage?.Invoke();
+    }
+
+    public void Heal(float value)
+    {
+        float newHealth = current + value;
+        newHealth = Mathf.Clamp(newHealth, 0, max);
+        current = newHealth;
+
+        OnHeal?.Invoke();
     }
 }

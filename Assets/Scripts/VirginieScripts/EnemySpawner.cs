@@ -205,16 +205,25 @@ public class EnemySpawner : MonoBehaviour
         return null;
     }
 
-    private Transform FindTarget(EnemyAgent agent, SpawnPoint spawnPoint)
+    private Vector3 FindTarget(EnemyAgent agent, SpawnPoint spawnPoint)
     {
         if (agent.enemyType.name == "Asteroid")
         {
-            if (ShipManager.Instance == null) return null;
-            return ShipManager.Instance.transform;
+            if (ShipManager.Instance == null) return new Vector3(0,0,0);
+            return ShipManager.Instance.transform.position;
         }
         else
         {
-            return spawnPoint.stopPoint.transform;
+            float rnd = Random.Range(0, 1);
+            float radius = 10.0f;
+            float r = radius * Mathf.Sqrt(rnd);
+            float theta = rnd * 2 * Mathf.PI;
+            float xCenter = spawnPoint.stopPoint.transform.position.x;
+            float yCenter = spawnPoint.stopPoint.transform.position.y;
+            float x = xCenter + r * Mathf.Cos(theta);
+            float y = yCenter + r * Mathf.Sin(theta);
+            Vector3 target = new Vector3(x, y, 0);
+            return spawnPoint.stopPoint.transform.position;
         }
     }
     private void CreateWave()
