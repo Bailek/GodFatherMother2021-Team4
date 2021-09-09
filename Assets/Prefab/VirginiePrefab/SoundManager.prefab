@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeDuration: 2
   sounds:
-  - name: 
-    volume: 0
+  - name: Placing_Cards
+    volume: 0.5
     pitch: 0
     spatialBlend: 0
     minDist3D: 0
@@ -55,5 +55,248 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     clips:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: dc2aa3f786e1dd7498fcc1a212571f65, type: 3}
+    source: {fileID: 0}
+  - name: PlayerShip_Firing
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 91266898b2c22ca419f3815d1546e9c1, type: 3}
+    source: {fileID: 0}
+  - name: PlayerShip_Touched_Shots
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: f08a4efecdd36904892c5f3fa2aca3f8, type: 3}
+    source: {fileID: 0}
+  - name: PlayerShip_Touched_Asteroids
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: ff52e222fc253fc4e8d4edaeaf962429, type: 3}
+    source: {fileID: 0}
+  - name: PlayerShip_No_More_PVs
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 0c2bdac259f729048bc867c9534dbcdb, type: 3}
+    source: {fileID: 0}
+  - name: Placing_Repairing_Cards
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: dc2aa3f786e1dd7498fcc1a212571f65, type: 3}
+    source: {fileID: 0}
+  - name: Cards_Turn_Off
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: c87adc2173fa91c4ea2f3385b72b89c1, type: 3}
+    - {fileID: 8300000, guid: c67dfb52c5acc1a41b1ccf165dba4a88, type: 3}
+    - {fileID: 8300000, guid: 42ae47cea30f2d444a3685053da1b819, type: 3}
+    - {fileID: 8300000, guid: f447381f1d9fcf849b4c0cec39bad8dc, type: 3}
+    - {fileID: 8300000, guid: 31400f5c4c53ad147bf98fafe6c2c7dc, type: 3}
+    source: {fileID: 0}
+  - name: Placing_Booster_Card
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: ca35787fa896bab4ab37b1849072c6e2, type: 3}
+    source: {fileID: 0}
+  - name: PlayerShip_Destroyed
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: de8b8edce633f804e9b08348e11593e9, type: 3}
+    source: {fileID: 0}
+  - name: Magnetic_Field_Ready
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 1e3eebaf298a0db42a0410e531d3a862, type: 3}
+    source: {fileID: 0}
+  - name: Magnetic_Field_Used
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: e974559893268d042b4bab9451df1c59, type: 3}
+    source: {fileID: 0}
+  - name: Enemies_Touched
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 6ff115c2fa2a9524a8a67a80d390226a, type: 3}
+    - {fileID: 8300000, guid: 7c6012ae60c720a4190886da7cd1d05e, type: 3}
+    - {fileID: 8300000, guid: c0f7fd20357019f42bccee987e2a3738, type: 3}
+    - {fileID: 8300000, guid: 7dccece818557c14ea4d650b6afc4f84, type: 3}
+    - {fileID: 8300000, guid: b03c4f65ccd53c74a886f980fd830001, type: 3}
+    - {fileID: 8300000, guid: 7556f7f469350274ea709c62d3bc9ee5, type: 3}
+    - {fileID: 8300000, guid: 59b64d18dc232274cbcb05b93718b3f7, type: 3}
+    source: {fileID: 0}
+  - name: Firing_Strong_Enemy
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 51217f4dfacd3224a94b3f4ea37374fc, type: 3}
+    source: {fileID: 0}
+  - name: Firing_Weak_Enemy
+    volume: 0.5
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 06764bed445fdd341b6ce8f3d6095d15, type: 3}
+    source: {fileID: 0}
+  - name: Enemies_Explosion
+    volume: 0.3
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 96a93e8ec2588cd4f96a9db4580aa924, type: 3}
+    - {fileID: 8300000, guid: 0dc5f104bb61160469058324cd200836, type: 3}
+    - {fileID: 8300000, guid: 79e4970063a0ca44badc50ddf03dc97f, type: 3}
+    - {fileID: 8300000, guid: 6e635e1fdb70d4c4fa3bac9ba851cf23, type: 3}
+    - {fileID: 8300000, guid: b7c41d4ba6437864596cc13c26f20f9b, type: 3}
+    - {fileID: 8300000, guid: 2a1b60f9fcbd73f408fcb02d23faa2d5, type: 3}
+    source: {fileID: 0}
+  - name: Main_Menu_Music
+    volume: 0.3
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 1
+    playOnAwake: 1
+    clips:
+    - {fileID: 8300000, guid: 4b5e91f1ba2d7374ba1bfbd41f4e2f54, type: 3}
+    source: {fileID: 0}
+  - name: Game_Music
+    volume: 0.3
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 1
+    playOnAwake: 1
+    clips:
+    - {fileID: 8300000, guid: 9b9f89e152c5d1e40b3aa2c89797b164, type: 3}
+    source: {fileID: 0}
+  - name: Jingle_Highscore
+    volume: 0.3
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 2c54701bc2807f24e945de69695e6972, type: 3}
+    source: {fileID: 0}
+  - name: During_Drag
+    volume: 0.3
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: 251d8776f689cbd4291215ae7d06d723, type: 3}
+    source: {fileID: 0}
+  - name: UI_Button
+    volume: 0.3
+    pitch: 0
+    spatialBlend: 0
+    minDist3D: 0
+    maxDist3D: 0
+    mute: 0
+    loop: 0
+    playOnAwake: 0
+    clips:
+    - {fileID: 8300000, guid: bfd209fc6a884ce44afd536621e052ad, type: 3}
     source: {fileID: 0}
