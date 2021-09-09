@@ -51,9 +51,9 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (card != null)
         {
-            artworkImage.sprite = card.artWork;
-            articonImage.sprite = card.artIcon;
-            statText.text = card.stat.ToString();
+            //artworkImage.sprite = card.artWork;
+            //articonImage.sprite = card.artIcon;
+            //statText.text = card.stat.ToString();
         }
     }
     

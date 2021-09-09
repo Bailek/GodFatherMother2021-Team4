@@ -7,31 +7,76 @@ public class CardEffect : MonoBehaviour
 {
     public GameObject panel1;
     public GameObject Touret1;
-    public DropZone dropZone;
+    public Drop drop;
     public enum Slot { TOURET, HEAL, ZAPPER, LAZER, MEGABOOSTER }
     public Slot typeOfCard = Slot.TOURET;
-    public void ActivateEffect(Spaceship spaceship, DropZone dropZone)
+    public CardDisplay currentCard;
+    private void Start()
     {
+        drop.DropCallback += ActivateEffect;
+    }
+    public void EndEffect()
+    {
+        switch (currentCard.typeOfCard)
+        {
+            case CardDisplay.Slot.TOURET:
+                Debug.Log("Toutrelle activate");
+                DespawnTouret();
+                break;
 
-        //switch (dropZone.GetComponent<CardDisplay>().typeOfCard)
-        //{
-        //    case Slot.TOURET:
-        //        SpawnTouret();
-        //        break;
+            case CardDisplay.Slot.HEAL:
+                Debug.Log("Heal activate");
+                Heal();
+                break;
 
-        //    case Slot.HEAL:
-        //        Heal();
-        //        break;
+            case CardDisplay.Slot.LAZER:
+                Debug.Log("Lazer activate");
+                Lazer();
+                break;
 
-        //    case Slot.LAZER:
-        //        Lazer();
-        //        break;
+            case CardDisplay.Slot.MEGABOOSTER:
+                Debug.Log("MegaBooster activate");
+                Booster();
+                break;
+        }
+    }
 
-        //    case Slot.MEGABOOSTER:
-        //        Booster();
-        //        break;
-        //}
-            
+    private void DespawnTouret()
+    {
+        Touret1.SetActive(false);
+    }
+
+    public void ActivateEffect(CardDisplay obj)
+    {
+        if(currentCard != null)
+        {
+            EndEffect();
+        }
+        
+        currentCard = obj;
+        switch (obj.typeOfCard)
+        {
+            case CardDisplay.Slot.TOURET:
+                Debug.Log("Toutrelle activate");
+                SpawnTouret();
+                break;
+
+            case CardDisplay.Slot.HEAL:
+                Debug.Log("Heal activate");
+                Heal();
+                break;
+
+            case CardDisplay.Slot.LAZER:
+                Debug.Log("Lazer activate");
+                Lazer();
+                break;
+
+            case CardDisplay.Slot.MEGABOOSTER:
+                Debug.Log("MegaBooster activate");
+                Booster();
+                break;
+        }
+
 
     }
     
@@ -54,12 +99,8 @@ public class CardEffect : MonoBehaviour
 
     public void Heal()
     {
-        
+        Spaceship.instance.HealShip(20);
     }
 
 
-
-    
-    
-        
 }
