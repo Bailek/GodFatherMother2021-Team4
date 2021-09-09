@@ -16,6 +16,7 @@ public class EnemyShipAgent : EnemyAgent
 
     private EnemyBullet enemyBullet;
     private bool canShoot = false;
+    private bool hasFinishRotate2Ship = false;
 
     public override void Awake()
     {
@@ -30,21 +31,35 @@ public class EnemyShipAgent : EnemyAgent
         if (shipManager == null || ship == null) return;
         if (!hasArriveOnTarget)
         {
-            base.MoveToTarget();
+            MoveToTarget();
             VerifyHasArriveToTarget();
-            base.RotateTowardShip();
+            RotateTowardTarget();
         }
-        else
+        else if(!hasFinishRotate2Ship)
         {
-            canShoot = true;
+            RotateTowardShip();
         }
     }
-
     public void FixedUpdate()
     {
         if (!canShoot) return;
         Shoot();
     }
+    public void RotateTowardShip()
+    {
+        Vector3 forward = transform.position + Vector3.up;
+        Vector3 vForwardToShip = ship.transform.position - forward;
+        Vector3 dirToShip = vForwardToShip.normalized;
+        float angle = Mathf.Atan2(dirToShip.y, dirToShip.x) * Mathf.Rad2Deg - 90f;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.deltaTime * 100);
+
+        if (Quaternion.Angle(transform.rotation, q) <= 5)
+        {
+            canShoot = true;
+        }
+    }
+
     private void Shoot()
     {
         timer += Time.fixedDeltaTime;
@@ -58,11 +73,11 @@ public class EnemyShipAgent : EnemyAgent
 
     public void VerifyHasArriveToTarget()
     {
-        float distance2Target = Vector2.Distance((Vector2)transform.position, target.position);
+        float distance2Target = Vector2.Distance((Vector2)transform.position, target);
         if (distance2Target <= 0.5f)
         {
             hasArriveOnTarget = true;
-            transform.position = target.position;
+            transform.position = target;
         }
     }
     public override void SetDamage(float _damageMultiplier)

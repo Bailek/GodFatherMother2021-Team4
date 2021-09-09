@@ -11,14 +11,14 @@ public class EnemyAgent : MonoBehaviour
 
     [Header ("  DEBUG")]
     public float damage = 0.0f;
-    public Transform target;
+    public Vector3 target;
     public Vector2 speed;
 
-    private HealthSystem health;
-    private SpriteRenderer spriteRenderer;
+    public HealthSystem health;
+    public SpriteRenderer spriteRenderer;
     public ShipManager shipManager;
     public GameObject ship;
-    private Vector2 saveVelocity;
+    public Vector2 saveVelocity;
 
     public virtual void Awake()
     {
@@ -42,7 +42,7 @@ public class EnemyAgent : MonoBehaviour
         if (shipManager != null || ship != null)
         {
             MoveToTarget();
-            RotateTowardShip();
+            RotateTowardTarget();
         }
         else
         {
@@ -54,14 +54,14 @@ public class EnemyAgent : MonoBehaviour
     {
         transform.position += (Vector3)saveVelocity;
     }
-    public void SetTarget(Transform value)
+    public void SetTarget(Vector3 value)
     {
         target = value;
     }
 
-    public virtual void MoveToTarget()
+    public void MoveToTarget()
     {
-        Vector2 vEnemyShip = target.position - transform.position;
+        Vector2 vEnemyShip = target - transform.position;
         Vector2 dirEnemy = vEnemyShip.normalized;
         Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
 
@@ -70,14 +70,13 @@ public class EnemyAgent : MonoBehaviour
         saveVelocity = velocity;
     }
 
-    public void RotateTowardShip()
+    public void RotateTowardTarget()
     {
-        float angle = 0f;
         Vector3 forward = transform.position + Vector3.up;
-        Vector3 vForwardToTarget = ship.transform.position - forward;
-        Vector3 dirForwardToTarget = vForwardToTarget.normalized;
-        angle = Mathf.Atan2(dirForwardToTarget.y, dirForwardToTarget.x) * Mathf.Rad2Deg - 90f;
-
+        Vector3 vForwardToShip = ship.transform.position - forward;
+        Vector3 dirToShip = vForwardToShip.normalized;
+        float angle = Mathf.Atan2(dirToShip.y, dirToShip.x) * Mathf.Rad2Deg - 90f;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 

@@ -36,11 +36,11 @@ public class EnemyBullet : MonoBehaviour
     public void MoveToShip()
     {
 
-        Vector2 vBulletShip = target.position - transform.position;
-        Vector2 dirBullet = vBulletShip.normalized;
-        Vector2 velocity = dirBullet * speed * Time.fixedDeltaTime;
+        Vector3 vBulletShip = target.position - transform.position;
+        Vector3 dirBullet = vBulletShip.normalized;
+        Vector3 velocity = dirBullet * speed * Time.deltaTime;
 
-        transform.position += (Vector3)velocity;
+        transform.position += velocity;
 
         saveVelocity = velocity;
     }

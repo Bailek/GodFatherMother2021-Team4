@@ -9,6 +9,7 @@ public class Enemy : ScriptableObject
     public float maxDamage = 20.0f;
     public float speed = 10.0f;
     public float maxSpeed = 20.0f;
+    public float rotationSpeed = 100.0f;
 
     public Sprite sprite;
     public Sprite spriteOnDestroy;
