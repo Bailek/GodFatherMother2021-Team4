@@ -6,36 +6,45 @@ using UnityEngine;
 [RequireComponent(typeof(HealthSystem))]
 public class HealthUI : MonoBehaviour
 {
-    public Sprite fullHealth;
-    public Sprite midHealth;
-    public Sprite lowHealth;
+    public List<HealthState> states = new List<HealthState>();
+    private HealthSystem health;
+    private SpriteRenderer spriteRenderer;
 
-    HealthSystem health;
-    SpriteRenderer spriteRenderer;
-    int healthPart;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<HealthSystem>();
-        healthPart = (int)(health.maxHealth / 3);
+        spriteRenderer.sprite = states[0].sprite;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        UpdateSprite();
+        UpdateState();
     }
 
-    private void UpdateSprite()
+    private void UpdateState()
     {
-        if(health.currentHealth <= healthPart)
+        if (health.current <= 0)
         {
-            spriteRenderer.sprite = lowHealth;
-        }else if(health.currentHealth <= healthPart * 2)
-        {
-            spriteRenderer.sprite = midHealth;
+            Debug.Log("Death");
+            //GameManager.instance.EndGame();
+            return;
         }
-        else
+
+        for (int i = states.Count - 1; i >= 0; i--)
         {
-            spriteRenderer.sprite = fullHealth;
+            float ceillingPercent = health.max * states[i].minHealthPercentage / 100;
+            if (health.current <= ceillingPercent)
+            {
+                spriteRenderer.sprite = states[i].sprite;
+                break;
+            }
         }
     }
+}
+
+[System.Serializable]
+public class HealthState
+{
+    public float minHealthPercentage;
+    public Sprite sprite;
 }

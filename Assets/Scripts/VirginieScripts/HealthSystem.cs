@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float currentHealth = 100.0f;
-    public float maxHealth = 100.0f;
+    public float current = 100.0f;
+    public float max = 100.0f;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        current = max;
     }
 
     public void SetMaxHealth(float value)
     {
-        maxHealth = value;
-        currentHealth = maxHealth;
+        max = value;
+        current = max;
     }
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        current -= damage;
 
-        if (currentHealth <= 0)
+        if (current <= 0)
         {
             Destroy(this.gameObject);
         }

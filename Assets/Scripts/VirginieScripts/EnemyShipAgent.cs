@@ -69,6 +69,7 @@ public class EnemyShipAgent : EnemyAgent
     {
         damageMultiplier = _damageMultiplier;
         damage = enemyType.damage * damageMultiplier;
+        damage = Mathf.Clamp(damage, 0, base.enemyType.maxDamage);
         enemyBullet.damage = damage;
     }
 
@@ -76,5 +77,6 @@ public class EnemyShipAgent : EnemyAgent
     {
         fireRateMultiplier = _fireRateMultiplier;
         fireRate = enemyType.GetFireRate() * fireRateMultiplier;
+        fireRate = Mathf.Clamp(fireRate, 0, base.enemyType.GetMaxFireRate());
     }
 }
