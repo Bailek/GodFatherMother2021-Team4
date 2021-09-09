@@ -4,19 +4,20 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RawImage))]
 public class ParallaxSystem : MonoBehaviour
 {
-    public float speed = 0.1f;
+    public float speed = 100.0f;
 
     private RawImage img;
     private Camera cam;
     private RectTransform rectTransform;
-    private float camHeight, camWidth;
+    [HideInInspector]
+    public float camHeight, camWidth;
     private float minHeight, maxHeight, minWidth, maxWidth;
     private float length;
 
     private void Start()
     {
         cam = Camera.main;
-        camHeight = cam.orthographicSize;
+        camHeight = cam.orthographicSize * 2f;
         camWidth = camHeight * cam.aspect;
 
         minHeight = -camHeight;
@@ -26,13 +27,19 @@ public class ParallaxSystem : MonoBehaviour
 
         img = GetComponent<RawImage>();
         rectTransform = GetComponent<RectTransform>();
-        length = rectTransform.rect.width; 
+        length = rectTransform.rect.width;
     }
 
-    private void Update()
+    public virtual void Update()
     {
-        Rect rect = img.uvRect;
-        rect.x += speed;
-        img.uvRect = rect;
+        //faster movement
+        //transform.position = new Vector3(
+        //    transform.position.x - speed * Time.deltaTime,
+        //    transform.position.y,
+        //    0);
+
+        rectTransform.anchoredPosition = new Vector2(
+            rectTransform.anchoredPosition.x - speed * Time.deltaTime,
+            rectTransform.anchoredPosition.y);
     }
 }
