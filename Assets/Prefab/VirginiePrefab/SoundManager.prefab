@@ -71,7 +71,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PlayerShip_Touched_Shots
     volume: 0.5
-    pitch: 0
+    pitch: 1
     spatialBlend: 0
     minDist3D: 0
     maxDist3D: 0

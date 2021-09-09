@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8491aaf6abd5e439507e7c0634a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: PlayerShip_Touched_Asteroids
   max: 100
   current: 100
 --- !u!95 &7069544959545430832

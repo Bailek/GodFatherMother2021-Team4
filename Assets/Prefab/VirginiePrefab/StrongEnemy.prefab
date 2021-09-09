@@ -147,12 +147,7 @@ MonoBehaviour:
   shipManager: {fileID: 0}
   ship: {fileID: 0}
   saveVelocity: {x: 0, y: 0}
-  moveCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  firingSoundName: Firing_Strong_Enemy
   bulletPrefab: {fileID: 8260939286287531607, guid: 962e0a1d2a9a748488ca8b44ace3a6f3, type: 3}
   fireRate: 0
   damageMultiplier: 1
@@ -171,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8491aaf6abd5e439507e7c0634a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: Enemies_Explosion
   max: 100
   current: 100
 --- !u!114 &8278248422250139529

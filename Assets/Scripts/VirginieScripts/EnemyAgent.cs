@@ -67,6 +67,8 @@ public class EnemyAgent : MonoBehaviour
         {
             health.TakeDamage(1);
             Destroy(other.gameObject);
+
+            SoundManager.Instance.PlaySound("Enemies_Touched");
         }
     }
 
