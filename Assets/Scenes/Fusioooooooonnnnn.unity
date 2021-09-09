@@ -596,9 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f7d792881a68047bc55f867c2355dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: {fileID: 0}
-  midHealth: {fileID: 0}
-  lowHealth: {fileID: 0}
+  states: []
 --- !u!114 &597735019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,8 +609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8491aaf6abd5e439507e7c0634a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
-  maxHealth: 100
+  max: 100
+  current: 100
 --- !u!114 &597735020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,9 +852,6 @@ MonoBehaviour:
   damageMultiplierIncremental: 0.1
   fireRateMultiplierIncremental: 0.1
   enemyNbToAddEachWave: 1
-  waveCount: 0
-  isWaveFinished: 0
-  timer: 0
 --- !u!4 &1087954114
 Transform:
   m_ObjectHideFlags: 0
@@ -1525,6 +1520,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 9203408397496588395, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: max
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203408397496588395, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
       propertyPath: maxHealth
       value: 1000
       objectReference: {fileID: 0}
@@ -1532,6 +1531,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 9203408397496588436, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: states.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 2747690628134850419, guid: be3bbb825fa229049b90e9aa82341af7, type: 3}
+    - target: {fileID: 9203408397496588436, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: states.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 9203408397496588436, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: states.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 9203408397496588438, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1575,6 +1586,18 @@ PrefabInstance:
     - target: {fileID: 9203408397496588438, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203408397496588439, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: m_Color.b
+      value: 0.01214843
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203408397496588439, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203408397496588439, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: m_Color.r
+      value: 0.06465184
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}

@@ -33,8 +33,5 @@ public class ShipManager : MonoBehaviour
             health.TakeDamage(damage);
             Destroy(collision.gameObject);
         }
-
-        
-
     }
 }
