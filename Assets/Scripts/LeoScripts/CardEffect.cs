@@ -99,7 +99,7 @@ public class CardEffect : MonoBehaviour
 
     public void Heal()
     {
-        Spaceship.instance.HealShip(100);
+        Spaceship.instance.HealShip(20);
     }
 
 
