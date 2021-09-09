@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5279266134833955156}
   - component: {fileID: 5279266134833955159}
-  - component: {fileID: 5279266134833955157}
   - component: {fileID: 5279266134833955155}
+  - component: {fileID: -2187355737563337305}
   - component: {fileID: -3806650122971245998}
   - component: {fileID: -2269014550727518818}
   m_Layer: 6
@@ -87,35 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &5279266134833955157
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5279266134833955158}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.520428, y: 0.3492218}
-    newSize: {x: 1, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
 --- !u!50 &5279266134833955155
 Rigidbody2D:
   serializedVersion: 4
@@ -137,6 +108,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!58 &-2187355737563337305
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279266134833955158}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.260214
 --- !u!114 &-3806650122971245998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +140,7 @@ MonoBehaviour:
   damage: 0
   target: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0}
+  speedMultiplier: 1
   health: {fileID: 0}
   spriteRenderer: {fileID: 0}
   shipManager: {fileID: 0}
@@ -160,7 +148,6 @@ MonoBehaviour:
   saveVelocity: {x: 0, y: 0}
   randFactor: 4
   lifeTime: 5
-  speedMultiplier: 1
   timer: 0
 --- !u!114 &-2269014550727518818
 MonoBehaviour:

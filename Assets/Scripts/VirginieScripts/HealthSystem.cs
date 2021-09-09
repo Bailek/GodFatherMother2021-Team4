@@ -26,7 +26,6 @@ public class HealthSystem : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        GetComponent<Animator>().Play("ShipDamage");
         current -= damage;
 
         if (current <= 0)
