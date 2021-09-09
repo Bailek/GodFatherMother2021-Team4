@@ -8,13 +8,16 @@ public class Zapper : MonoBehaviour
     public Animator Nova;
     private Charge charge;
     public Image chargeImage;
+    [HideInInspector]
     public bool ChargeReady = false;
+    [HideInInspector]
     public float curentcharge;
     public int waitAnim = 2;
+    public int chargeSpeed = 5;
 
     public void Start()
     {
-        charge = new Charge();
+        charge = new Charge(chargeSpeed);
         ChargeReady = false;
     }
     
@@ -27,19 +30,15 @@ public class Zapper : MonoBehaviour
         {
             ChargeReady = true;
         }
-
     }
     public void NovaAnim()
     {
         if (ChargeReady)
         {
-            
             charge.SpendCharge(Charge.MaxCharge);
             ChargeReady = false;
             StartCoroutine(Wait(waitAnim));
-            
         }
-        
     }
     IEnumerator Wait(int waitAnim)
     {
@@ -51,15 +50,14 @@ public class Zapper : MonoBehaviour
 
 public class Charge
 {
-
     public const int MaxCharge = 100;
     public float CurrentCharge;
     public float RegenCharge;
 
-    public Charge()
+    public Charge(int chargeSpeed)
     {
+        RegenCharge = chargeSpeed;
          CurrentCharge = 0f;
-         RegenCharge = 5f;
     }
     public void Update()
     {
