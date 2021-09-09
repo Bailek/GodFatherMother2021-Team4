@@ -24,7 +24,7 @@ public class ShootingTurret : TurretParent
 
     public override void shootTarget()
     {
-        int layerMask = 1 << 11;
+        int layerMask = 1 << 6;
         RaycastHit2D hit = Physics2D.Raycast( transform.position, transform.right, turretStats.radius, layerMask);
         if (hit.collider != null)
         {

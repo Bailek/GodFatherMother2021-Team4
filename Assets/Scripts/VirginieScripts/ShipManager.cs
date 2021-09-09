@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(HealthUI))]
 public class ShipManager : MonoBehaviour
 {
-    
     private HealthSystem health;
     public static ShipManager Instance { get; set; }
     private void Awake()
@@ -32,8 +31,5 @@ public class ShipManager : MonoBehaviour
             health.TakeDamage(damage);
             Destroy(collision.gameObject);
         }
-
-        
-
     }
 }

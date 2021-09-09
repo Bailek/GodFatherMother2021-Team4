@@ -11,14 +11,14 @@ public class EnemyAgent : MonoBehaviour
 
     [Header ("  DEBUG")]
     public float damage = 0.0f;
-    public Transform target;
+    public Vector3 target;
     public Vector2 speed;
 
-    private HealthSystem health;
-    private SpriteRenderer spriteRenderer;
+    public HealthSystem health;
+    public SpriteRenderer spriteRenderer;
     public ShipManager shipManager;
     public GameObject ship;
-    private Vector2 saveVelocity;
+    public Vector2 saveVelocity;
 
     public virtual void Awake()
     {
@@ -35,50 +35,43 @@ public class EnemyAgent : MonoBehaviour
 
         if (shipManager == null) return;
         ship = shipManager.gameObject;
+        CalculateVelocity();
     }
 
     public virtual void Update()
     {
-        if (shipManager != null || ship != null)
-        {
-            MoveToTarget();
-            RotateTowardShip();
-        }
-        else
-        {
-            ContinueMove();
-        }
+        MoveToTarget();
     }
-
-    private void ContinueMove()
-    {
-        transform.position += (Vector3)saveVelocity;
-    }
-    public void SetTarget(Transform value)
+    public void SetTarget(Vector3 value)
     {
         target = value;
     }
 
-    public virtual void MoveToTarget()
+    public void MoveToTarget()
     {
-        Vector2 vEnemyShip = target.position - transform.position;
+        transform.position += (Vector3)saveVelocity;
+    }
+
+    public virtual void CalculateVelocity()
+    {
+        Vector2 vEnemyShip = target - transform.position;
         Vector2 dirEnemy = vEnemyShip.normalized;
         Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
-
-        transform.position += (Vector3)velocity;
-
         saveVelocity = velocity;
     }
 
-    public void RotateTowardShip()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        float angle = 0f;
-        Vector3 forward = transform.position + Vector3.up;
-        Vector3 vForwardToTarget = ship.transform.position - forward;
-        Vector3 dirForwardToTarget = vForwardToTarget.normalized;
-        angle = Mathf.Atan2(dirForwardToTarget.y, dirForwardToTarget.x) * Mathf.Rad2Deg - 90f;
+        if (other.gameObject.tag.Contains("Bullet"))
+        {
+            health.TakeDamage(1);
+            Destroy(other.gameObject);
+        }
+    }
 
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+    public void takeDamage(int value)
+    {
+        health.TakeDamage(value);
     }
 
     public virtual void SetSpeed(float _speedMultiplier) { }

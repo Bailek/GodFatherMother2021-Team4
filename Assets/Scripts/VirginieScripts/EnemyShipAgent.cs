@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyShipAgent : EnemyAgent
 {
+    [Header("  ANIMATION")]
+    public AnimationCurve moveCurve;
+
     [Header("  BULLET")]
     public GameObject bulletPrefab;
 
@@ -25,26 +28,48 @@ public class EnemyShipAgent : EnemyAgent
         enemyBullet.damage = base.damage;
     }
 
+    public override void Start()
+    {
+        base.Start();
+    }
     public override void Update()
     {
         if (shipManager == null || ship == null) return;
         if (!hasArriveOnTarget)
         {
-            base.MoveToTarget();
+            MoveToTarget();
             VerifyHasArriveToTarget();
-            base.RotateTowardShip();
-        }
-        else
-        {
-            canShoot = true;
         }
     }
-
     public void FixedUpdate()
     {
         if (!canShoot) return;
         Shoot();
     }
+    public void RotateTowardTarget()
+    {
+        Vector3 forward = transform.position + Vector3.up;
+        Vector3 vForwardToTarget = target - forward;
+        Vector3 dirToShip = vForwardToTarget.normalized;
+        float angle = Mathf.Atan2(dirToShip.y, dirToShip.x) * Mathf.Rad2Deg - 90f;
+        transform.Rotate(new Vector3(0, 0, angle), Space.World);
+    }
+
+    public void RotateTowardShip()
+    {
+        Vector3 forward = transform.position + Vector3.up;
+        Vector3 vForwardToShip = ship.transform.position - forward;
+        Vector3 dirToShip = vForwardToShip.normalized;
+        float angle = Mathf.Atan2(dirToShip.y, dirToShip.x) * Mathf.Rad2Deg - 90f;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.deltaTime * 100);
+
+        if (Quaternion.Angle(transform.rotation, q) <= 5)
+        {
+            canShoot = true;
+        }
+    }
+
     private void Shoot()
     {
         timer += Time.fixedDeltaTime;
@@ -58,11 +83,13 @@ public class EnemyShipAgent : EnemyAgent
 
     public void VerifyHasArriveToTarget()
     {
-        float distance2Target = Vector2.Distance((Vector2)transform.position, target.position);
-        if (distance2Target <= 0.5f)
+        float distance2Target = Vector2.Distance((Vector2)transform.position, target);
+        if (distance2Target <= 0.05f)
         {
             hasArriveOnTarget = true;
-            transform.position = target.position;
+            transform.position = target;
+            target = ship.transform.position;
+            canShoot = true;
         }
     }
     public override void SetDamage(float _damageMultiplier)

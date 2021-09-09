@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   damage: 10
+  maxDamage: 20
   speed: 2
-  sprite: {fileID: 21300000, guid: 686d01cefaccd4e42823d38cd71d5b5a, type: 3}
-  spriteOnDestroy: {fileID: 0}
-  multipliers: []
+  maxSpeed: 20
+  rotationSpeed: 100
+  sprite: {fileID: 21300000, guid: 56d431697094b3b4c9e8c14af7e1458a, type: 3}
+  spriteOnDestroy: {fileID: 21300000, guid: 817b046af0d14694195fb15e79e3b9e0, type: 3}
   fireRate: 10
-  spriteBullet: {fileID: 0}
-  fireRateMultipler: 1
-  damageMultiplier: 1
+  maxFireRate: 20
+  spriteBullet: {fileID: 21300000, guid: e61ade7e428d518468f28d994287ab39, type: 3}

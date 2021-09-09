@@ -15,10 +15,15 @@ public class HealthUI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<HealthSystem>();
         spriteRenderer.sprite = states[0].sprite;
+
+        health.OnTakeDamage += UpdateState;
+        health.OnHeal += UpdateState;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnDisable()
     {
-        UpdateState();
+        health.OnTakeDamage -= UpdateState;
+        health.OnHeal -= UpdateState;
     }
 
     private void UpdateState()

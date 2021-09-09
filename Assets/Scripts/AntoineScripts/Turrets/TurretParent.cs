@@ -32,7 +32,7 @@ public class TurretParent : MonoBehaviour
     }
     public void updateTarget()
     {
-        int layerMask = 1 << 11;
+        int layerMask = 1 << 6;
         Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, turretStats.radius, layerMask);
         if (collidersInRange.Length > 0)
         {

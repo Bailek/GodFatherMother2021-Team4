@@ -22,7 +22,6 @@ public class Spaceship : MonoBehaviour
     
     private void Awake()
     {
-        
         if (instance == null) { instance = this; }
         else { Destroy(gameObject); }
         
@@ -53,7 +52,7 @@ public class Spaceship : MonoBehaviour
         UpdateState();
     }
 
-    private void HealShip(float value)
+    public void HealShip(float value)
     {
         StartCoroutine(healProcess(value));
     }
