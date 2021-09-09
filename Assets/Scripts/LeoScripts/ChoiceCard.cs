@@ -12,11 +12,17 @@ public class ChoiceCard : MonoBehaviour
     public GameObject[] CardChoice2;
     public GameObject[] CardChoice3;
 
+    
     public void Start()
     {
-        ChoiceCardPanel = this.gameObject;
+        WaveEvent.OnNoEnemy.AddListener(InterPhase);
+        InterPhase();
     }
-
+    public void InterPhase()
+    {
+        ChoiceCardPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
     public void GiveChoice1()
     {
         stackCards[0].numberStack += 2;
@@ -24,7 +30,8 @@ public class ChoiceCard : MonoBehaviour
         stackCards[2].numberStack += 0;
         stackCards[3].numberStack += 0;
         ChoiceCardPanel.SetActive(false);
-}
+        Time.timeScale = 1;
+    }
     public void GiveChoice2()
     {
         stackCards[0].numberStack += 0;
@@ -32,6 +39,7 @@ public class ChoiceCard : MonoBehaviour
         stackCards[2].numberStack += 1;
         stackCards[3].numberStack += 1;
         ChoiceCardPanel.SetActive(false);
+        Time.timeScale = 1;
     }
     public void GiveChoice3()
     {
@@ -40,9 +48,7 @@ public class ChoiceCard : MonoBehaviour
         stackCards[2].numberStack += 2;
         stackCards[3].numberStack += 1;
         ChoiceCardPanel.SetActive(false);
+        Time.timeScale = 1;
     }
-    public void GetSetCard()
-    {
-        //CardChoice1 = Random.Range(0, 5);
-    }
+    
 }
