@@ -78,4 +78,9 @@ public class EnemyAgent : MonoBehaviour
     public virtual void SetSpeed(float _speedMultiplier) { }
     public virtual void SetDamage(float _damageMultiplier) { }
     public virtual void SetFireRate(float _rateOfFireMultiplier) { }
+
+    public void OnDestroy()
+    {
+        WaveEvent.OnDestroyEnemy.Invoke(this);
+    }
 }

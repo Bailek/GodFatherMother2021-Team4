@@ -18,23 +18,21 @@ public class EnemySpawner : MonoBehaviour
                 fireRateWeakMultiplier = 1.0f,
                 damageStrongMultiplier = 1.0f,
                 fireRateStrongMultiplier = 1.0f;
-    private int waveCount = 0;
-    private bool isWaveFinished = false;
+    private int waveCount = 1;
     private bool hasSpawn = false;
     private List<SpawnPoint> asteroidSpawnPoint = new List<SpawnPoint>(),
                              weakSpawnPoint = new List<SpawnPoint>(),
                             strongSpawnPoint = new List<SpawnPoint>();
 
-    private float timer = 0f;
-    private float camHeight, camWidth;
-
+    [Header("   DEBUG")]
+    [SerializeField] private float timer = 0f;
+    [SerializeField] private bool isWaveFinished = false;
     private void Awake()
     {
-        Camera cam = Camera.main;
-        camHeight = 2f * cam.orthographicSize;
-        camWidth = camHeight * cam.aspect;
-
         CreateListSpawnPointsByType();
+
+        // EnemyManager
+        WaveEvent.OnNoEnemy.AddListener(FinishWave);
     }
     private void CreateListSpawnPointsByType()
     {
@@ -52,32 +50,33 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        StartWave();
-    }
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        // TEST
-        if (isWaveFinished)
-        {
-            CreateWave();
-        }
-
-        if (timer < timeBeforeStartWave) { return; }
-        timer = 0;
-        StartWave();
-    }
     public void StartWave()
     {
-        waveCount++;
         StartCoroutine(SpawnEnemy());   
+    }
+
+    public void FinishWave()
+    {
+        isWaveFinished = true;
+        CreateWave();
+    }
+    private void CreateWave()
+    {
+        waveCount++;
+        ResetEnemyCount();
+        IncrementEnemyCount();
+        IncrementMultiplier();
+        timer = 0;
     }
 
     private IEnumerator SpawnEnemy()
     {
+        while (timer < timeBeforeStartWave)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
         while (!isWaveFinished)
         {
             hasSpawn = false;
@@ -91,10 +90,6 @@ public class EnemySpawner : MonoBehaviour
                 SpawnTwoType();
             }
 
-            if (!hasSpawn)
-            {
-                isWaveFinished = true;
-            }
             yield return new WaitForSeconds(timeBeforeSpawn);
         }
     }
@@ -173,6 +168,9 @@ public class EnemySpawner : MonoBehaviour
 
         enemyList[index].currentCount++;
         hasSpawn = true;
+
+        // EnemyManager
+        WaveEvent.OnAddEnemy?.Invoke(newAgent);
     }
 
     private void SetMultiplier(EnemyAgent newAgent)
@@ -228,15 +226,6 @@ public class EnemySpawner : MonoBehaviour
 
             return target;
         }
-    }
-
-    private void CreateWave()
-    {
-        waveCount++;
-        ResetEnemyCount();
-        IncrementEnemyCount();
-        IncrementMultiplier();
-        isWaveFinished = false;
     }
 
     private void ResetEnemyCount()
