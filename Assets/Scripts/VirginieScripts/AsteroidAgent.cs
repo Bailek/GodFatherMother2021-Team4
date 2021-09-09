@@ -32,11 +32,17 @@ public class AsteroidAgent : EnemyAgent
     public override void Update()
     {
         base.Update();
+        Rotation();
         timer += Time.deltaTime;
 
         if(timer > lifeTime)
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void Rotation()
+    {
+        transform.Rotate(0, 0, enemyType.rotationSpeed, Space.Self);
     }
 }
