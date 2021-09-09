@@ -1165,7 +1165,7 @@ GameObject:
   - component: {fileID: 364948834}
   - component: {fileID: 364948833}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2306,6 +2306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818346166}
+  - component: {fileID: 818346167}
   m_Layer: 0
   m_Name: BackTourret
   m_TagString: Untagged
@@ -2329,6 +2330,25 @@ Transform:
   m_Father: {fileID: 1396998552}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &818346167
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818346165}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d08ab4df24cddd449980c0f3372ecf1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &875117773
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,6 +3091,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6846634434810450206, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9203408397496588432, guid: 9e5e6abd8341ede41aac1098e842d221, type: 3}
       propertyPath: m_Name
       value: Ship
@@ -4947,7 +4971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22.375488}
+  m_AnchoredPosition: {x: 0, y: -22.375427}
   m_SizeDelta: {x: -789.5441, y: -159.8266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773112488
