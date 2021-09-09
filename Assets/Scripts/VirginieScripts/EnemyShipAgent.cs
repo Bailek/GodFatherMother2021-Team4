@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyShipAgent : EnemyAgent
 {
-    [Header("  ANIMATION")]
-    public AnimationCurve moveCurve;
+    [Header("       SOUND")]
+    public string firingSoundName;
 
-    [Header("  BULLET")]
+    [Header("       BULLET")]
     public GameObject bulletPrefab;
 
-    [Header ("  DEBUG")]
+    [Header ("      DEBUG")]
     [SerializeField] private float fireRate = 0;
     [SerializeField] private float damageMultiplier = 1.0f;
     [SerializeField] private float fireRateMultiplier = 1.0f;
@@ -78,6 +78,8 @@ public class EnemyShipAgent : EnemyAgent
         {
             GameObject newBullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
             timer -= delayBetweenFire;
+
+            SoundManager.Instance.PlaySound(firingSoundName);
         }
     }
 

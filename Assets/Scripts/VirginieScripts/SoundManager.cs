@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
-
+using UnityEngine.SceneManagement;
 public class SoundManager : MonoBehaviour
 {
     public float fadeDuration = 2.0f;
@@ -42,6 +42,18 @@ public class SoundManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            PlaySound("Game_Music");
+        }
+        else if(SceneManager.GetActiveScene().name == "StartMenu")
+        {
+            PlaySound("Main_Menu_Music");
         }
     }
 

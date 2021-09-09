@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     public event HealthEvent OnHeal;
     #endregion
 
+    public string deathSound;
     public float max = 100.0f;
     [Header("   DEBUG")]
     public float current = 100.0f;
@@ -30,6 +31,7 @@ public class HealthSystem : MonoBehaviour
 
         if (current <= 0)
         {
+            SoundManager.Instance.PlaySound(deathSound);
             Destroy(this.gameObject);
             return;
         }
