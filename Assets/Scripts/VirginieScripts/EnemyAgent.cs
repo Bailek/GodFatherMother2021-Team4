@@ -69,6 +69,11 @@ public class EnemyAgent : MonoBehaviour
         }
     }
 
+    public void takeDamage(int value)
+    {
+        health.TakeDamage(value);
+    }
+
     public virtual void SetSpeed(float _speedMultiplier) { }
     public virtual void SetDamage(float _damageMultiplier) { }
     public virtual void SetFireRate(float _rateOfFireMultiplier) { }

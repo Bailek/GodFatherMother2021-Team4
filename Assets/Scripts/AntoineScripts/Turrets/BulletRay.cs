@@ -1,14 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletRay : MonoBehaviour
 {
-    public float speed;
-    [HideInInspector]
-    public Vector3 target;
-
     public float lifetime;
     private float timeLeft;
 
@@ -22,7 +17,8 @@ public class Bullet : MonoBehaviour
         lifetime -= Time.deltaTime;
         if(lifetime <= 0) Destroy(gameObject);
         
-        float step = speed * Time.deltaTime;
-        transform.position += target * step;
+        Color color = GetComponent<SpriteRenderer>().color;
+        color = new Color(color.r, color.g, color.b, color.a - (1f * Time.deltaTime));
+        GetComponent<SpriteRenderer>().color = color;
     }
 }

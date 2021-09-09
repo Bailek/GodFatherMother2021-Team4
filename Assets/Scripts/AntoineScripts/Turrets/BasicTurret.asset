@@ -16,3 +16,4 @@ MonoBehaviour:
   rotateSpeed: 20
   fireRate: 0.1
   targetUpdateInterval: 1
+  damage: 1
