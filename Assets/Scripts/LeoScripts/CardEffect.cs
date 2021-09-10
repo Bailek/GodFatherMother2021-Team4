@@ -46,6 +46,7 @@ public class CardEffect : MonoBehaviour
         {
             Debug.Log("MegaBooster desactivate");
             typeOfEffect = Effect.NOTHING;
+            WaveEvent.OnBoostStop.Invoke();
             lastcurrentCard.gameObject.SetActive(false);
         }
 
@@ -100,7 +101,7 @@ public class CardEffect : MonoBehaviour
             case CardDisplay.Slot.MEGABOOSTER:
                 Debug.Log("MegaBooster activate");
                 typeOfEffect = Effect.MEGABOOSTER;
-                //Booster();
+                WaveEvent.OnBoostActivated.Invoke();
                 lastcurrentCard = currentCard;
                 currentCard.gameObject.SetActive(false);
                 break;
