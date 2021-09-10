@@ -9,17 +9,16 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public enum Slot { TOURET, HEAL, ZAPPER, LAZER, MEGABOOSTER }
     public Slot typeOfCard = Slot.TOURET;
     public Vector3 positionToReturnTo;
-    public GameObject PanelCard;
-
     public Card card;
-
     public Image artworkImage;
-    public Image articonImage;
-
-    public Text statText;
-    public Text numberText;
     private StackCard stackCard;
-
+    void Start()
+    {
+        if (card != null)
+        {
+            artworkImage.sprite = card.artWork;
+        }
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         positionToReturnTo = this.transform.position;
@@ -47,15 +46,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         this.stackCard = stackCard;
     }
-    void Start()
-    {
-        if (card != null)
-        {
-            //artworkImage.sprite = card.artWork;
-            //articonImage.sprite = card.artIcon;
-            //statText.text = card.stat.ToString();
-        }
-    }
+    
     
     
 }

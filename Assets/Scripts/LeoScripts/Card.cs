@@ -11,8 +11,5 @@ public class Card : ScriptableObject
     public Slot typeOfCard = Slot.TOURET;
 
     public Sprite artWork;
-    public Sprite artIcon;
-    public int stat;
-    public int number;
     
 }

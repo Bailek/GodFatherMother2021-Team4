@@ -56,53 +56,52 @@ public class CardEffect : MonoBehaviour
     public void ActivateEffect(CardDisplay obj)
     {
         
-        if(currentCard != null)
+
+        if (currentCard != null)
         {
             EndEffect();
         }
+
         currentCard = obj;
+
+        if (lastcurrentCard = null)
+        {
+            lastcurrentCard = currentCard;
+        }
         
         switch (obj.typeOfCard)
         {
             
             case CardDisplay.Slot.TOURET:
-                //if(lastcurrentCard.typeOfCard != currentCard.typeOfCard)
+                //if(lastcurrentCard.typeOfCard != CardDisplay.Slot.TOURET)
                 //{
+                    
                 //}
                 Debug.Log("Toutrelle activate");
-                    typeOfEffect = Effect.TOURET;
-                    Touret.SetActive(true);
-                    lastcurrentCard = currentCard;
-                    currentCard.gameObject.SetActive(false);
-                
+                typeOfEffect = Effect.TOURET;
+                Touret.SetActive(true);
                 break;
 
             case CardDisplay.Slot.HEAL:
                 Debug.Log("Heal activate");
                 typeOfEffect = Effect.HEAL;
-                //Spaceship.instance.HealShip(20);
-                lastcurrentCard = currentCard;
-                currentCard.gameObject.SetActive(false);
+                Spaceship.instance.HealShip(20);
                 break;
 
             case CardDisplay.Slot.LAZER:
                 //if (lastcurrentCard.typeOfCard != currentCard.typeOfCard)
                 //{
+                    
                 //}
                 Debug.Log("Lazer activate");
-                    typeOfEffect = Effect.LAZER;
-                    Lazer.SetActive(true);
-                    lastcurrentCard = currentCard;
-                    currentCard.gameObject.SetActive(false);
-                
+                typeOfEffect = Effect.LAZER;
+                Lazer.SetActive(true);
                 break;
 
             case CardDisplay.Slot.MEGABOOSTER:
                 Debug.Log("MegaBooster activate");
                 typeOfEffect = Effect.MEGABOOSTER;
                 //Booster();
-                lastcurrentCard = currentCard;
-                currentCard.gameObject.SetActive(false);
                 break;
         }
         lastcurrentCard = currentCard;

@@ -13,7 +13,4 @@ MonoBehaviour:
   m_Name: Bosster
   m_EditorClassIdentifier: 
   typeOfCard: 0
-  artWork: {fileID: 0}
-  artIcon: {fileID: 0}
-  stat: 0
-  number: 0
+  artWork: {fileID: 21300000, guid: f7bdcc50cf9e75e4785a64887cac9150, type: 3}
