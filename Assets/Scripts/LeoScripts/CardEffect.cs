@@ -80,7 +80,7 @@ public class CardEffect : MonoBehaviour
             case CardDisplay.Slot.HEAL:
                 Debug.Log("Heal activate");
                 typeOfEffect = Effect.HEAL;
-                //Spaceship.instance.HealShip(20);
+                ShipManager.Instance.health.HealShip(20);
                 lastcurrentCard = currentCard;
                 currentCard.gameObject.SetActive(false);
                 break;
