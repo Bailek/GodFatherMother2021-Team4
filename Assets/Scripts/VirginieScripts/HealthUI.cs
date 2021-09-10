@@ -1,21 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(HealthSystem))]
 public class HealthUI : MonoBehaviour
 {
     public List<HealthState> states = new List<HealthState>();
+    public Image image;
     private HealthSystem health;
     private SpriteRenderer spriteRenderer;
+    
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = GetComponent<HealthSystem>();
+       
         spriteRenderer.sprite = states[0].sprite;
 
+        if(image != null)
+        {
+            image.fillAmount = health.max;
+        }
         health.OnTakeDamage += UpdateState;
         health.OnHeal += UpdateState;
     }
@@ -43,6 +51,11 @@ public class HealthUI : MonoBehaviour
                 spriteRenderer.sprite = states[i].sprite;
                 break;
             }
+        }
+
+        if(image != null)
+        {
+            image.fillAmount = health.current / health.max;
         }
     }
 }
