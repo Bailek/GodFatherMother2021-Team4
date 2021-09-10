@@ -22,6 +22,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        GetComponent<Animator>().enabled = false;
         positionToReturnTo = this.transform.position;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
@@ -33,9 +34,9 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
+        GetComponent<Animator>().enabled = true;
         this.transform.position = positionToReturnTo;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-
     }
 
 

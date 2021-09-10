@@ -18,7 +18,7 @@ public class BulletRay : MonoBehaviour
         if(lifetime <= 0) Destroy(gameObject);
         
         Color color = GetComponent<SpriteRenderer>().color;
-        color = new Color(color.r, color.g, color.b, color.a - (1f * Time.deltaTime));
+        color = new Color(color.r, color.g, color.b, color.a - (2f * Time.deltaTime));
         GetComponent<SpriteRenderer>().color = color;
     }
 }

@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5424687238259772062}
   - component: {fileID: 5424687238259772049}
   - component: {fileID: 5424687238259772048}
+  - component: {fileID: 4824898991840476782}
   m_Layer: 5
   m_Name: CardTest
   m_TagString: Untagged
@@ -267,6 +268,25 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &4824898991840476782
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424687238259772050}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1af658b3473c7f345825baacb0cad48f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5424687238360222768
 GameObject:
   m_ObjectHideFlags: 0
