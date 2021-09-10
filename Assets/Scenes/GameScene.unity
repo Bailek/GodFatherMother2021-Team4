@@ -1361,7 +1361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1657690836154060458, guid: a915015b2fd68df4ba551ea91533a0cd, type: 3}
       propertyPath: timeBeforeSpawn
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1657690836154060458, guid: a915015b2fd68df4ba551ea91533a0cd, type: 3}
       propertyPath: enemyNbToAddEachWave
