@@ -61,7 +61,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void FinishWave()
     {
-        Debug.Log("Finish Wave");
         isWaveFinished = true;
         CreateWave();
     }
