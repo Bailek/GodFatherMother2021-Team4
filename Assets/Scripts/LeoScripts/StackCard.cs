@@ -11,7 +11,7 @@ public class StackCard : MonoBehaviour
     public CardDisplay PrefabCard;
     public GameObject LastPrefab;
     public GameObject Canvas;
-
+    private bool stackNoCard = false;
     public void Start()
     {
         if (numberStack > 0)
@@ -19,7 +19,13 @@ public class StackCard : MonoBehaviour
             CreatPrefab();
         }
     }
-
+    public void Update()
+    {
+        if (numberStack > 0)
+        {
+            CreatPrefab();
+        }
+    }
     internal void OnCardPosition()
     {
         if(numberStack > 0)
@@ -36,5 +42,6 @@ public class StackCard : MonoBehaviour
         newCard.SetStack(this);
     }
     
+
 
 }
