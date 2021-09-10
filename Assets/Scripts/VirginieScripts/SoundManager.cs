@@ -49,7 +49,6 @@ public class SoundManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
-            Debug.Log("StartMAin");
             PlaySound("Game_Music");
         }
         else if(SceneManager.GetActiveScene().name == "StartMenu")

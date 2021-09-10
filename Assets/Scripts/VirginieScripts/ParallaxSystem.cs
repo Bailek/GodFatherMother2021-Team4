@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class ParallaxSystem : MonoBehaviour
 {
     public float speed = 100.0f;
-
+    public float speedMultiplier = 10.0f;
+    [Header("       DEBUG")]
+    public float currentSpeed;
     private RawImage img;
     private Camera cam;
     private RectTransform rectTransform;
@@ -28,8 +30,16 @@ public class ParallaxSystem : MonoBehaviour
         img = GetComponent<RawImage>();
         rectTransform = GetComponent<RectTransform>();
         length = rectTransform.rect.width;
+
+        WaveEvent.OnBoostActivated.AddListener(MultiplySpeed);
+
+        currentSpeed = speed;
     }
 
+    public void MultiplySpeed()
+    {
+        currentSpeed = speed * speedMultiplier;
+    }
     public virtual void Update()
     {
         //faster movement
@@ -39,7 +49,7 @@ public class ParallaxSystem : MonoBehaviour
         //    0);
 
         rectTransform.anchoredPosition = new Vector2(
-            rectTransform.anchoredPosition.x - speed * Time.deltaTime,
+            rectTransform.anchoredPosition.x - currentSpeed * Time.deltaTime,
             rectTransform.anchoredPosition.y);
     }
 }
