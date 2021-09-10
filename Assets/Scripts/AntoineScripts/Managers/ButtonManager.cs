@@ -19,4 +19,9 @@ public class ButtonManager : MonoBehaviour
     {
         GameManager.instance.TogglePause();
     }
+
+    public void Go2Menu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
 }
