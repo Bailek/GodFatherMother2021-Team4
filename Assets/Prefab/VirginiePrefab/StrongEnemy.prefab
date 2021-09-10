@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 56d431697094b3b4c9e8c14af7e1458a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -186,3 +186,4 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 56d431697094b3b4c9e8c14af7e1458a, type: 3}
   - minHealthPercentage: 50
     sprite: {fileID: 21300000, guid: 817b046af0d14694195fb15e79e3b9e0, type: 3}
+  image: {fileID: 0}

@@ -97,9 +97,23 @@ public class EnemySpawner : MonoBehaviour
             bool hasSpawnEveryEnemy = true;
             foreach (EnemyList list in enemyList)
             {
-                if(list.currentCount != list.maxCount)
+                if (list.currentCount != list.maxCount)
                 {
-                    hasSpawnEveryEnemy = false;
+                    if (waveCount % 5 != 0)
+                    {
+                        if (list.enemyPrefab.name == "StrongEnemy")
+                        {
+                            list.currentCount = list.maxCount;
+                        }
+                        else
+                        {
+                            hasSpawnEveryEnemy = false;
+                        }
+                    }
+                    else
+                    {
+                        hasSpawnEveryEnemy = false;
+                    }
                 }
             }
 
