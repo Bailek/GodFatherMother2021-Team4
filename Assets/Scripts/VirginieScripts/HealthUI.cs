@@ -34,7 +34,7 @@ public class HealthUI : MonoBehaviour
         health.OnHeal -= UpdateState;
     }
 
-    private void UpdateState()
+    public void UpdateState()
     {
         if (health.current <= 0)
         {
@@ -42,12 +42,12 @@ public class HealthUI : MonoBehaviour
             //GameManager.instance.EndGame();
             return;
         }
-
         for (int i = states.Count - 1; i >= 0; i--)
         {
-            float ceillingPercent = health.max * states[i].minHealthPercentage / 100;
+            float ceillingPercent = 100 * states[i].minHealthPercentage / 100;
             if (health.current <= ceillingPercent)
             {
+                Debug.LogWarning(states[i].sprite.name);
                 spriteRenderer.sprite = states[i].sprite;
                 break;
             }
