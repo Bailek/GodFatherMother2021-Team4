@@ -27,19 +27,19 @@ public class ChoiceCard : MonoBehaviour
     }
     public void RandomDraw()
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             int Rand = Random.Range(0, Cards.Length - 1);
             Choice1[i] = Cards[Rand];
             Image1[i].sprite = Cards[Rand].artworkImage.sprite;
         }
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             int Rand = Random.Range(0, Cards.Length - 1);
             Choice2[i] = Cards[Rand];
             Image2[i].sprite = Cards[Rand].artworkImage.sprite;
         }
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             int Rand = Random.Range(0, Cards.Length - 1);
             Choice3[i] = Cards[Rand];
@@ -54,7 +54,7 @@ public class ChoiceCard : MonoBehaviour
     }
     public void GiveChoice1()
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             if(stackCards[0].typeOfStack == Choice1[i].typeOfCard)
             {
@@ -78,7 +78,7 @@ public class ChoiceCard : MonoBehaviour
     }
     public void GiveChoice2()
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             if (stackCards[0].typeOfStack == Choice2[i].typeOfCard)
             {
@@ -102,7 +102,7 @@ public class ChoiceCard : MonoBehaviour
     }
     public void GiveChoice3()
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             if (stackCards[0].typeOfStack == Choice3[i].typeOfCard)
             {

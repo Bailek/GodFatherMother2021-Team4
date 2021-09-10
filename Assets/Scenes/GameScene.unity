@@ -6404,7 +6404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1860446349458806002, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: numberStack
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2948207159053637728, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: m_IsActive
@@ -6888,11 +6888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3793391463089611684, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: numberStack
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4033118964684215838, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4484747721909437350, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: Cards.Array.size
@@ -6966,6 +6966,14 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 5958481062589469093, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043689715487940822, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 94
+      objectReference: {fileID: 0}
     - target: {fileID: 6241432292379256783, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7012,7 +7020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584445914868610603, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
       propertyPath: numberStack
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8384035526217332709, guid: 83bb2973f3a6c6748a986e00c175f86c, type: 3}
