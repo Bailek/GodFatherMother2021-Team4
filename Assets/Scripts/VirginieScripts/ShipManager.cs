@@ -39,4 +39,9 @@ public class ShipManager : MonoBehaviour
             animator.Play("ShipDamage");
         }
     }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.EndGame();
+    }
 }

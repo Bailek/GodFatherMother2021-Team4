@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    EnemySpawner spawner;
     [Header("   DEBUG")]
     [SerializeField] private List<EnemyAgent> enemyAgents = new List<EnemyAgent>();
 
     private void Awake()
     {
+        spawner = GetComponent<EnemySpawner>();
         // EnemySpawner
         WaveEvent.OnAddEnemy.AddListener(AddAgent);
         WaveEvent.OnDestroyEnemy.AddListener(RemoveAgent);
@@ -22,7 +24,7 @@ public class EnemyManager : MonoBehaviour
     {
         enemyAgents.Remove(agent);
 
-        if(enemyAgents.Count <= 0)
+        if(enemyAgents.Count <= 0 && spawner.hasStopSpawn)
         {
             WaveEvent.OnNoEnemy.Invoke();
         }

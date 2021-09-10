@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("   DEBUG")]
     [SerializeField] private float timer = 0f;
     [SerializeField] private bool isWaveFinished = false;
+    public bool hasStopSpawn = false;
     private void Awake()
     {
         CreateListSpawnPointsByType();
@@ -53,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
     public void StartWave()
     {
         isWaveFinished = false;
+        hasStopSpawn = false;
         StartCoroutine(SpawnEnemy());   
     }
 
@@ -91,6 +93,10 @@ public class EnemySpawner : MonoBehaviour
                 SpawnTwoType();
             }
 
+            if (!hasSpawn)
+            {
+                hasStopSpawn = true;
+            }
             yield return new WaitForSeconds(timeBeforeSpawn);
         }
     }
