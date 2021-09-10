@@ -27,7 +27,6 @@ public class ShipManager : MonoBehaviour
             float damage = collision.gameObject.GetComponent<EnemyAgent>().damage;
             health.TakeDamage(damage);
             Destroy(collision.gameObject);
-
             animator.Play("ShipDamage");
         }
         else if (collision.gameObject.CompareTag("EnemyBullet"))
@@ -35,7 +34,6 @@ public class ShipManager : MonoBehaviour
             float damage = collision.gameObject.GetComponent<EnemyBullet>().damage;
             health.TakeDamage(damage);
             Destroy(collision.gameObject);
-
             animator.Play("ShipDamage");
         }
     }
