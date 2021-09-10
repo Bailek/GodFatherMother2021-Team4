@@ -22,6 +22,7 @@ public class ButtonManager : MonoBehaviour
 
     public void Go2Menu()
     {
+        Debug.Log("Menyu");
         SceneManager.LoadScene("StartMenu");
     }
 }
