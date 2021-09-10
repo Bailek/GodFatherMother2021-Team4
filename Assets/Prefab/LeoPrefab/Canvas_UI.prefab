@@ -720,7 +720,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3006871050470620722}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: Go2Menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
