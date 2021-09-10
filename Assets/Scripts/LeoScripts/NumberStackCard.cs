@@ -12,16 +12,8 @@ public class NumberStackCard : MonoBehaviour
     {
         for(int i = 0; i < stackCards.Length; i++)
         {
-            if(stackCards[i].numberStack == 0)
-            {
                 int t = stackCards[i].numberStack;
                 texts[i].text = t.ToString();
-            }
-            else if(stackCards[i].numberStack >= 1)
-            {
-                int t = stackCards[i].numberStack + 1;
-                texts[i].text = t.ToString();
-            }
             
         }
     }

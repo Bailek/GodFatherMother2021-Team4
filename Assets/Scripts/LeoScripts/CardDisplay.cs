@@ -12,13 +12,14 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public Card card;
     public Image artworkImage;
     private StackCard stackCard;
-    void Start()
+    public void Awake()
     {
         if (card != null)
         {
             artworkImage.sprite = card.artWork;
         }
     }
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         GetComponent<Animator>().enabled = false;
