@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 3006871050343027145}
   - component: {fileID: 3006871050343027144}
   - component: {fileID: 3006871050343027143}
+  - component: {fileID: 4090438250068479106}
   m_Layer: 5
   m_Name: Zapper
   m_TagString: Untagged
@@ -310,6 +311,25 @@ MonoBehaviour:
   curentcharge: 0
   waitAnim: 2
   chargeSpeed: 20
+--- !u!95 &4090438250068479106
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006871050343027141}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fd72132620a63a4da0fb3dca756652c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3006871050348359101
 GameObject:
   m_ObjectHideFlags: 0
