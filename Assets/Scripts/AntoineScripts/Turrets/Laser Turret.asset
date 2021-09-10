@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 10
   rotateSpeed: 20
-  fireRate: 0.1
+  fireRate: 3
   targetUpdateInterval: 1
-  damage: 1
+  damage: 5
