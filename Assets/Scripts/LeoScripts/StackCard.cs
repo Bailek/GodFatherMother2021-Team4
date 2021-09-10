@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 
 public class StackCard : MonoBehaviour
 {
-    public enum Slot { TOURET, HEAL, ZAPPER, LAZER, MEGABOOSTER }
-    public Slot typeOfStack = Slot.TOURET;
+    public CardDisplay.Slot typeOfStack = CardDisplay.Slot.TOURET;
     public int numberStack;
     public CardDisplay PrefabCard;
     public GameObject LastPrefab;

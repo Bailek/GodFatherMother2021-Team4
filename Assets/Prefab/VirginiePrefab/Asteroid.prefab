@@ -147,7 +147,7 @@ MonoBehaviour:
   shipManager: {fileID: 0}
   ship: {fileID: 0}
   saveVelocity: {x: 0, y: 0}
-  randFactor: 4
+  randFactor: 2
   lifeTime: 5
   timer: 0
 --- !u!114 &-2269014550727518818
