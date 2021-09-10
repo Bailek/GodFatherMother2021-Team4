@@ -21,7 +21,7 @@ public class LaserTurret : TurretParent
 
     public override void shootTarget()
     {
-        int layerMask = 1 << 11;
+        int layerMask = 1 << 6;
         RaycastHit2D[] hits = Physics2D.RaycastAll( transform.position, transform.right, turretStats.radius, layerMask);
         for (int i = 0; i < hits.Length; i++)
         {
