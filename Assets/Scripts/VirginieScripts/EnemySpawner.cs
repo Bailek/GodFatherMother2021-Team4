@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
                 fireRateWeakMultiplier = 1.0f,
                 damageStrongMultiplier = 1.0f,
                 fireRateStrongMultiplier = 1.0f;
-    private int waveCount = 1;
+
     private bool hasSpawn = false;
     private List<SpawnPoint> asteroidSpawnPoint = new List<SpawnPoint>(),
                              weakSpawnPoint = new List<SpawnPoint>(),
@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timer = 0f;
     [SerializeField] private bool isWaveFinished = false;
     public bool hasStopSpawn = false;
+    [SerializeField] private int waveCount = 1;
     private void Awake()
     {
         CreateListSpawnPointsByType();
@@ -60,6 +61,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void FinishWave()
     {
+        Debug.Log("Finish Wave");
         isWaveFinished = true;
         CreateWave();
     }
@@ -93,7 +95,16 @@ public class EnemySpawner : MonoBehaviour
                 SpawnTwoType();
             }
 
-            if (!hasSpawn)
+            bool hasSpawnEveryEnemy = true;
+            foreach (EnemyList list in enemyList)
+            {
+                if(list.currentCount != list.maxCount)
+                {
+                    hasSpawnEveryEnemy = false;
+                }
+            }
+
+            if (hasSpawnEveryEnemy)
             {
                 hasStopSpawn = true;
             }
@@ -126,11 +137,18 @@ public class EnemySpawner : MonoBehaviour
         if (rnd <= 50)
         {
             SpawnEnemyAtIndexOrBelow(1);
-            if (!hasSpawn) { SpawnEnemyAtIndexOrOver(1); }
         }
         else if (rnd <= 100)
         {
             SpawnEnemyAtIndexOrOver(0);
+            if (enemyList[0].currentCount < enemyList[0].maxCount)
+            {
+                CreateEnemy(0);
+            }
+            else if(enemyList[1].currentCount < enemyList[1].maxCount)
+            {
+                CreateEnemy(1);
+            }
         }
     }
     private void SpawnEnemyAtIndexOrBelow(int index)

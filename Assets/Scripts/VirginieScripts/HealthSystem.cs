@@ -39,12 +39,26 @@ public class HealthSystem : MonoBehaviour
         OnTakeDamage?.Invoke();
     }
 
-    public void Heal(float value)
+    public void HealShip(float value)
     {
-        float newHealth = current + value;
-        newHealth = Mathf.Clamp(newHealth, 0, max);
-        current = newHealth;
+        StartCoroutine(healProcess(value));
+    }
 
-        OnHeal?.Invoke();
+    IEnumerator healProcess(float value, float seconds = 10f)
+    {
+        float healPerSec = value / seconds;
+        Debug.Log("step " + healPerSec);
+
+        while (value > 0)
+        {
+            float newHealth = current + healPerSec;
+            newHealth = Mathf.Clamp(newHealth, 0, max);
+            current = newHealth;
+            value -= healPerSec;
+            Debug.Log("heal " + current);
+            yield return new WaitForSeconds(1f);
+        }
+        
+        yield return null;
     }
 }

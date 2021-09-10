@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthUI))]
 public class ShipManager : MonoBehaviour
 {
-    private HealthSystem health;
+    public HealthSystem health;
     private Animator animator;
     public static ShipManager Instance { get; set; }
     private void Awake()
