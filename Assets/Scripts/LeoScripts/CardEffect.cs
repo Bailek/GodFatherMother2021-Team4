@@ -66,38 +66,49 @@ public class CardEffect : MonoBehaviour
         {
             
             case CardDisplay.Slot.TOURET:
-                if(lastcurrentCard != currentCard)
-                {
-                    Debug.Log("Toutrelle activate");
+                //if(lastcurrentCard.typeOfCard != currentCard.typeOfCard)
+                //{
+                //}
+                Debug.Log("Toutrelle activate");
                     typeOfEffect = Effect.TOURET;
                     Touret.SetActive(true);
-                }
+                    lastcurrentCard = currentCard;
+                    currentCard.gameObject.SetActive(false);
+                
                 break;
 
             case CardDisplay.Slot.HEAL:
                 Debug.Log("Heal activate");
                 typeOfEffect = Effect.HEAL;
                 //Spaceship.instance.HealShip(20);
+                lastcurrentCard = currentCard;
+                currentCard.gameObject.SetActive(false);
                 break;
 
             case CardDisplay.Slot.LAZER:
-                if (lastcurrentCard != currentCard)
-                {
-                    Debug.Log("Lazer activate");
+                //if (lastcurrentCard.typeOfCard != currentCard.typeOfCard)
+                //{
+                //}
+                Debug.Log("Lazer activate");
                     typeOfEffect = Effect.LAZER;
                     Lazer.SetActive(true);
-                }
+                    lastcurrentCard = currentCard;
+                    currentCard.gameObject.SetActive(false);
+                
                 break;
 
             case CardDisplay.Slot.MEGABOOSTER:
                 Debug.Log("MegaBooster activate");
                 typeOfEffect = Effect.MEGABOOSTER;
                 //Booster();
+                lastcurrentCard = currentCard;
+                currentCard.gameObject.SetActive(false);
                 break;
         }
         lastcurrentCard = currentCard;
         currentCard.gameObject.SetActive(false);
-        
+
+
     }
     
 
