@@ -39,6 +39,11 @@ public class Zapper : MonoBehaviour
             transform.GetChild(0).GetComponent<Animator>().Play("JaugeBack");
             transform.GetChild(2).GetComponent<Animator>().Play("JaugeFront");
         }
+
+        if(ChargeReady && Input.GetButtonDown("Fire2"))
+        {
+            NovaAnim();
+        }
     }
     public void NovaAnim()
     {
