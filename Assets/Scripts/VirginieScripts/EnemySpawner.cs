@@ -60,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void FinishWave()
     {
+        Debug.Log("Finish Wave");
         isWaveFinished = true;
         CreateWave();
     }
@@ -93,7 +94,16 @@ public class EnemySpawner : MonoBehaviour
                 SpawnTwoType();
             }
 
-            if (!hasSpawn)
+            bool hasSpawnEveryEnemy = true;
+            foreach (EnemyList list in enemyList)
+            {
+                if(list.currentCount != list.maxCount)
+                {
+                    hasSpawnEveryEnemy = false;
+                }
+            }
+
+            if (hasSpawnEveryEnemy)
             {
                 hasStopSpawn = true;
             }
