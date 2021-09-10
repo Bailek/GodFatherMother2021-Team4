@@ -32,6 +32,7 @@ public class ParallaxSystem : MonoBehaviour
         length = rectTransform.rect.width;
 
         WaveEvent.OnBoostActivated.AddListener(MultiplySpeed);
+        WaveEvent.OnBoostStop.AddListener(ResetSpeed);
 
         currentSpeed = speed;
     }
@@ -39,6 +40,11 @@ public class ParallaxSystem : MonoBehaviour
     public void MultiplySpeed()
     {
         currentSpeed = speed * speedMultiplier;
+    }
+
+    public void ResetSpeed()
+    {
+        currentSpeed = speed;
     }
     public virtual void Update()
     {

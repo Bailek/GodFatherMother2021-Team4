@@ -35,7 +35,6 @@ public class HealthSystem : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
         OnTakeDamage?.Invoke();
     }
 
